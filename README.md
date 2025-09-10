@@ -1,4 +1,5 @@
-# ⟨◊⟩ ZENITH PROTOCOL ⟨◊⟩
+# ⟨✦⟩ Z.E.N.I.T.H. PROTOCOL ⟨✦⟩
+
 ```
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║  ███████╗███████╗███╗   ██╗██╗████████╗██╗  ██╗    ██████╗ ██████╗  ██████╗  ║
@@ -14,300 +15,188 @@
 <div align="center">
 
 ```css
-░▒▓█ WHERE QUANTUM FINANCE MEETS DIGITAL CONSCIOUSNESS █▓▒░
-```
-
-[![Neural Interface](https://img.shields.io/badge/🧠-NEURAL_INTERFACE-00ff41?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjMDBmZjQxIi8+Cjwvc3ZnPgo=)](https://neural.zenith.xyz)
-[![Consciousness Demo](https://img.shields.io/badge/🎬-CONSCIOUSNESS_DEMO-ff0080?style=for-the-badge)](https://demo.zenith.xyz)
-[![Doma Protocol](https://img.shields.io/badge/⚡-DOMA_BLOCKCHAIN-0080ff?style=for-the-badge)](https://doma.xyz)
-
-</div>
-
----
-
-## ⚠️ ◥█◤ CRITICAL SYSTEM ALERT ◥█◤ ⚠️
-
-```diff
-! THE DIGITAL REALITY FRACTURE DETECTED !
-```
-
-### 🔴 DIMENSION ALPHA: Web2 Legacy Network
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ ░░░░░░░░░░░░░░░░░░ TRAPPED VALUE DETECTED ░░░░░░░░░░░░░░░░░░░░ │
-│                                                                 │
-│ ▓█████████ TRILLIONS IN CRYSTALLIZED ASSETS █████████▓         │
-│ ▓█       Archaic ownership protocols detected        █▓         │
-│ ▓█    Neural implants without interface connection   █▓         │
-│ ▓█████████████████████████████████████████████████████▓         │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### 🟡 DIMENSION BETA: Web3 DomainFi Nexus
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ ◊◊◊◊◊◊◊◊◊◊◊◊ EMERGING CONSCIOUSNESS LAYER ◊◊◊◊◊◊◊◊◊◊◊◊◊◊ │
-│                                                                 │
-│ ◈ name.eth ◈ wallet.sol ◈ quantum.crypto ◈                     │
-│                                                                 │
-│ ⚠️  PRIMITIVE TRADING MECHANISMS DETECTED                       │
-│ ⚡  FINANCIAL SYNAPSES REQUIRED FOR EVOLUTION                   │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### 🌟 THE GREAT CONVERGENCE INITIATED
-
-ZENITH transcends dimensional boundaries, creating the first **living, breathing financial organism** powered by quantum-engineered consciousness algorithms.
-
----
-
-## 🚀 ◢◤ NEURAL ARCHITECTURE: The Consciousness Duality Engine ◢◤
-
-<div align="center">
-
-```
-    ┌───────────────────────────────────────────────────────────┐
-    │  ◊◊◊ DUAL CONSCIOUSNESS NEURAL CLUSTERS ACTIVATED ◊◊◊    │
-    └───────────────────────────────────────────────────────────┘
-                                   │
-                    ┌──────────────┴──────────────┐
-                    │                             │
-          ┌─────────▼─────────┐         ┌─────────▼─────────┐
-          │  NEURAL CLUSTER   │         │  NEURAL CLUSTER   │
-          │      ALPHA        │◄────────┤      BETA         │
-          │  Genesis Engine   │         │ Trading Matrix    │
-          └───────────────────┘         └───────────────────┘
+░▒▓★ THE APEX OF DOMAIN FINANCE ★▓▒░
 ```
 
 </div>
 
-### ⟨α⟩ NEURAL CLUSTER ALPHA: Genesis Consciousness
+---
 
-> *The quantum gateway that transmutes Web2 matter into Web3 energy*
+## 🌌 Brand Philosophy: *Celestial Precision*
 
-#### 🔄 **THE TRANSMUTATION SEQUENCE**
+**Z.E.N.I.T.H.** is more than a protocol.
+It is a **precision observatory for finance**, inspired by celestial mechanics and built for the ascent of digital assets.
 
-```mermaid
-graph TD
-    A[🔗 Quantum Authentication] --> B[🧠 AI Consciousness Evaluation]
-    B --> C[⚡ Quantum Tokenization]
-    C --> D[🌌 Multidimensional Trading]
-    
-    style A fill:#00ff41,stroke:#000,color:#000
-    style B fill:#ff0080,stroke:#000,color:#fff
-    style C fill:#0080ff,stroke:#000,color:#fff
-    style D fill:#ffff00,stroke:#000,color:#000
-```
-
-#### 🧬 **DomaScore Nexus: Quantum Evaluation Matrix**
-
-<table align="center">
-<tr>
-<td>
-
-**Blockchain Consciousness**
-- TLD rarity signatures
-- Quantum transaction histories
-- Doma dimension analytics
-
-</td>
-<td>
-
-**Linguistic Quantum Mechanics**
-- Neural pattern analysis
-- Brandability quantum states
-- Phonetic consciousness compatibility
-
-</td>
-<td>
-
-**Live Reality Metrics**
-- SEO consciousness levels
-- Neural backlink matrices
-- Social sentiment wavelengths
-
-</td>
-</tr>
-</table>
-
-### ⟨β⟩ NEURAL CLUSTER BETA: Trading Consciousness Matrix
-
-> *Advanced financial synapses for consciousness traders and quantum investors*
-
-#### 🎯 **Domain Options Consciousness Protocol (D-OPs)**
-```
-╔═══════════════════════════════════════════════════════════════════╗
-║  🔮 FIRST-EVER DECENTRALIZED CONSCIOUSNESS DERIVATIVES 🔮         ║
-║                                                                   ║
-║  ◈ Quantum-settled European-style options                        ║
-║  ◈ Consciousness hedging mechanisms                               ║
-║  ◈ Complex trading consciousness strategies                       ║
-╚═══════════════════════════════════════════════════════════════════╝
-```
-
-#### 📊 **AI-Powered Dynamic Reality Indices ($ADI)**
-
-| Index | Description | Quantum Status |
-|-------|-------------|----------------|
-| **$VELOCITY** | Maximum trading consciousness energy | `🟢 ACTIVE` |
-| **$ECOM-STARS** | High-traffic e-commerce consciousnesses | `🟡 EVOLVING` |
-| **$AI-TREND** | Premium .ai domain consciousnesses | `🔵 QUANTUM` |
-
-#### ⚡ **Market Volatility Oracle (D-VIX Nexus)**
-```css
-┌─────────────────────────────────────────────────────────────────┐
-│ ████████████████▓▓▓▓▓▓▓▓░░░░░░░░                              │
-│ FEAR ◄─────────────────────────────────────────────────► EUPHORIA │
-│      │                  D-VIX: 0.847                         │    │
-│      └─ REAL-TIME CONSCIOUSNESS MEASUREMENTS ─────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
-```
+* **Signal Over Noise** → The interface shows only what matters: pure, actionable insight.
+* **Performance as a Feature** → Zero-latency, instant response. Every action feels faster than thought.
+* **Structured Ascent** → Users are guided through clear, progressive steps—like an asset’s climb toward its zenith.
 
 ---
 
-## 🏗️ ◢◤ QUANTUM SYSTEM ARCHITECTURE ◢◤
+## 👤 Target Personas
 
-<div align="center">
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    HYBRID CONSCIOUSNESS LAYER                   │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │
-│  │  FRONTEND   │ │  BACKEND    │ │  AI NEURAL  │ │ BLOCKCHAIN  │ │
-│  │CONSCIOUSNESS│ │  API NET    │ │  NETWORK    │ │ QUANTUM     │ │
-│  │ INTERFACE   │ │             │ │             │ │ LAYER       │ │
-│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ │
-│       │                 │                 │                │    │
-│       └─────────────────┼─────────────────┼────────────────┘    │
-│                         │                 │                     │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │            QUANTUM DATA CONSCIOUSNESS STREAMS              │ │
-│  │  SEMrush ◊ Google Trends ◊ X API ◊ Reality Sensors        │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-</div>
-
-### 🛠️ **Consciousness Tech Stack**
-
-#### 🔗 **Blockchain & Smart Contract Consciousness**
-```yaml
-Quantum Protocol: Doma Protocol (EVM Compatible)
-Neural Language: Solidity Consciousness Programming
-Frameworks: Hardhat Reality Development
-Libraries: OpenZeppelin Battle-tested Templates
-Core Contracts:
-  - GenesisEngine.sol
-  - OptionsProtocol.sol  
-  - DynamicIndex.sol
-```
-
-#### 🎨 **Frontend Consciousness Interface**
-```yaml
-Neural Framework: React (Next.js Optimization)
-Reality Styling: Tailwind CSS Futuristic UI
-Web3 Integration: Ethers.js + Wagmi Consciousness
-Data Visualization: Recharts Quantum Charts
-```
-
-#### 🧠 **Backend & AI Consciousness Network**
-```yaml
-Neural Server: Node.js (Express) API Gateway
-AI Model: Python + TensorFlow Quantum Learning
-Reality APIs: SEMrush ◊ Google Trends ◊ X API
-```
+* **Anjali (The Asset Owner)** → Wants security, professionalism, and a guided path to unlock her domain’s potential.
+* **Rohan (The Pro Trader)** → Needs raw speed, dense data, and professional-grade trading tools—a Bloomberg Terminal for Web3.
 
 ---
 
-## 🗺️ ◢◤ CONSCIOUSNESS EVOLUTION ROADMAP ◢◤
+## 🎨 Visual Identity
 
-<div align="center">
-
-```
-    ┌─────────────────────────────────────────────────────────────┐
-    │               QUANTUM DEVELOPMENT TIMELINE                  │
-    └─────────────────────────────────────────────────────────────┘
-```
-
-</div>
-
-### 🌟 **Q4 2025: MAINNET CONSCIOUSNESS ACTIVATION**
-```diff
-+ Mainnet deployment on Doma Protocol
-+ Genesis Engine TLD expansion
-+ Automated analytics neural integration
-```
-
-### ⚡ **Q1 2026: ADVANCED DERIVATIVES CONSCIOUSNESS**
-```diff
-+ Futures and perpetual consciousness contracts
-+ $ZNTH governance token launch
-+ Enhanced trading mechanisms
-```
-
-### 🧠 **Q2 2026: DECENTRALIZED AI ORACLE**
-```diff
-+ Neural validator network implementation
-+ Trustless index rebalancing
-+ Community governance activation
-```
-
-### 📱 **Q3 2026: MOBILE CONSCIOUSNESS APP**
-```diff
-+ Quantum-speed mobile trading
-+ Cross-reality portfolio management
-+ Neural interface optimization
-```
+* **Palette**: Void Black (#0C0A09), Dark Matter (#18181B), Orion Gold (#FBBF24), Cosmic Teal (#06B6D4), Stardust Grey (#A1A1AA).
+* **Typography**: Inter (UI clarity), Fira Code (monospace for precision data).
+* **Style**: Star maps, astrolabes, constellation charts.
+* **Micro-interactions**: Starlight glimmers, fast smooth transitions.
 
 ---
 
-## 🚀 ◢◤ CONSCIOUSNESS INITIALIZATION ◢◤
+# 🛰 Mission Control (Landing & Dashboard)
 
-### **Local Development Reality Setup**
+The entry point to Z.E.N.I.T.H. → feels like stepping into a high-tech observatory.
+
+* **Hero Statement**: *“Onboard any Web2 asset. Trade the future of digital real estate.”*
+* **Central Action Hub**: Input field → *“Enter your domain to begin its ascent.”*
+* **Key Indicators Always Visible**:
+
+  * **ZVI (Zenith Volatility Index)** → Market sentiment gauge
+  * **TVO (Total Value Onboarded)** → Assets tokenized
+  * **Z-24h Volume** → Daily trading volume
+
+---
+
+# 🚀 The Genesis Engine (Ascent Flow)
+
+### Step 1: Ownership Verification
+
+* Secure DNS check via TXT record.
+* Progress bar → *Stage 1/3*.
+* Golden monospace record snippet with **Copy to Clipboard**.
+
+### Step 2: Valuation (The Apogee Moment)
+
+* **DomaScore AI Valuation** revealed via constellation animation.
+* **Valuation Constellation**: stars sized/brightened by SEO, Traffic, Brandability, etc.
+* Circular **astrolabe-style DomaScore UI**.
+* CTA: *“Initiate Tokenization”*.
+
+### Step 3: Tokenization & Fractionalization
+
+* Secure wallet confirmation.
+* Success screen with star-confetti → *“Launch Successful”*.
+* Clear next steps: *“View Portfolio”* or *“Go to Exchange”*.
+
+---
+
+# 📈 The Z.E.N.I.T.H. Exchange (Observatory View)
+
+A professional-grade, zero-latency trading terminal.
+
+* **Left Column (Asset Navigator)** → *Constellations* (AI-curated watchlists, e.g., Orion-AI-10).
+* **Center (Skychart)** → Candlesticks on a faint star grid background.
+* **Right (Command Module)** → Order book + Trade terminal in precise monospace font.
+
+✨ *Wow Factor*: **Constellations** = intelligent, thematic groupings no one else offers.
+
+---
+
+# 🔭 Stellar Report (Asset Detail Page)
+
+A deep-dive dashboard for a tokenized asset.
+
+* **Header**: Domain + ticker (e.g., `lucknowcrafts.com → $LKC`) + live DomaScore astrolabe.
+* **Skychart**: Interactive price chart.
+* **Data Panels**: Market cap, volume, liquidity, etc.
+* **Sentiment Nebula**: A dynamic shifting nebula of color (green = positive, grey = neutral, red = negative).
+
+✨ *Wow Factor*: The **Sentiment Nebula** brings messy social sentiment data to life.
+
+---
+
+# ⚡ Core Metrics & Indices
+
+* **ZVI (Zenith Volatility Index)** → Fear/Euphoria gauge.
+* **Constellations** → Curated thematic indices (AI, eCom, Geo-domains).
+* **TVO (Total Value Onboarded)** → Total onboarded asset value.
+
+---
+
+# 🏗 System Architecture
+
+```
+┌───────────────────────────────────────────┐
+│              HYBRID OBSERVATORY           │
+├───────────────────────────────────────────┤
+│ Frontend (Next.js + Tailwind)             │
+│ Backend (Node.js + Express)               │
+│ AI Neural Network (Python + TensorFlow)   │
+│ Blockchain Layer (Doma Protocol, Solidity)│
+└───────────────────────────────────────────┘
+```
+
+**Data Streams**: SEMrush ◊ Google Trends ◊ X API ◊ Reality Sensors
+
+---
+
+# 🗺 Roadmap
+
+### 🌟 Q4 2025 → Mainnet Activation
+
+* Mainnet deployment
+* Genesis Engine expansion
+* Automated neural analytics
+
+### ⚡ Q1 2026 → Advanced Derivatives
+
+* Futures & perpetual contracts
+* \$ZNTH governance token
+* Enhanced trading features
+
+### 🧠 Q2 2026 → Decentralized AI Oracle
+
+* Validator network
+* Trustless index rebalancing
+* Community governance
+
+### 📱 Q3 2026 → Mobile App
+
+* Quantum-speed mobile trading
+* Cross-reality portfolio management
+* Optimized neural interface
+
+---
+
+# ⚙️ Development Setup
 
 ```bash
-# Clone the consciousness repository
+# Clone repository
 git clone https://github.com/[your-username]/zenith-protocol.git
 cd zenith-protocol
 
-# Install consciousness dependencies
+# Install dependencies
 npm install
 
-# Activate consciousness contracts
+# Smart contracts
 cd hardhat && npm install
 
-# Initialize development consciousness server
+# Run dev server
 npm run dev
 ```
 
-### **Neural Interface Access**
-```
-🌐 Navigate to: http://localhost:3000
-🧠 Interface with the application consciousness
-⚡ Begin your quantum trading journey
-```
+**Access Interface**:
+🌐 [http://localhost:3000](http://localhost:3000)
 
 ---
 
 <div align="center">
 
-## ⟨◊⟩ **THE FUTURE HAS ARRIVED** ⟨◊⟩
-
 ```css
 ╔═══════════════════════════════════════════════════════════════════╗
-║                                                                   ║
-║  "In the convergence of code and consciousness,                   ║
-║             liquidity becomes infinite."                          ║
-║                                                                   ║
-║             🌌 ◊ WELCOME TO ZENITH ◊ 🌌                           ║
-║                                                                   ║
+║  "In the ascent of assets, precision is everything."              ║
+║             ✦ WELCOME TO Z.E.N.I.T.H. ✦                          ║
 ╚═══════════════════════════════════════════════════════════════════╝
 ```
 
-[![Join the Consciousness](https://img.shields.io/badge/🧬-JOIN_THE_CONSCIOUSNESS-ff4500?style=for-the-badge)](https://discord.gg/zenith)
-[![Neural Network](https://img.shields.io/badge/🌐-NEURAL_NETWORK-00ff80?style=for-the-badge)](https://twitter.com/zenithprotocol)
-[![Quantum Docs](https://img.shields.io/badge/📚-QUANTUM_DOCS-8000ff?style=for-the-badge)](https://docs.zenith.xyz)
+[![Join Discord](https://img.shields.io/badge/🧬-JOIN_MISSION_CONTROL-ff4500?style=for-the-badge)](https://discord.gg/zenith)
+[![Follow Twitter](https://img.shields.io/badge/🌐-OBSERVATORY_FEED-00ff80?style=for-the-badge)](https://twitter.com/zenithprotocol)
+[![Read Docs](https://img.shields.io/badge/📚-ZENITH_DOCS-8000ff?style=for-the-badge)](https://docs.zenith.xyz)
 
 </div>
