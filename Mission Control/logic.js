@@ -71,3 +71,72 @@ async function connectWallet() {
 
 connectWalletButton.addEventListener('click', connectWallet);
 
+// --- Custom Cursor & Comet Tail ---
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.custom-cursor');
+    const tailContainer = document.createElement('div');
+    document.body.appendChild(tailContainer);
+
+    const tailCount = 15;
+    const tailParticles = [];
+    let mouseX = -100, mouseY = -100;
+    let lastTime = 0;
+
+    for (let i = 0; i < tailCount; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9998';
+        particle.style.backgroundColor = `rgba(56, 189, 248, ${0.5 - i * 0.03})`; // Fading opacity
+        tailContainer.appendChild(particle);
+        tailParticles.push({ element: particle, x: -100, y: -100 });
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateTail(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const deltaTime = timestamp - lastTime;
+        lastTime = timestamp;
+
+        // Animate the main cursor dot
+        cursor.style.left = `${mouseX}px`;
+        cursor.style.top = `${mouseY}px`;
+
+        let prevX = mouseX;
+        let prevY = mouseY;
+
+        tailParticles.forEach((particle, index) => {
+            const speed = 1.0 - (index / tailCount) * 0.3; // Particles further back move slower
+            const newX = particle.x + (prevX - particle.x) * speed * (deltaTime / 40); // Adjusted for soothing speed
+            const newY = particle.y + (prevY - particle.y) * speed * (deltaTime / 40);
+
+            const size = Math.max(1, 8 - index * 0.5); // Tapering size for a pointed look
+            particle.element.style.width = `${size}px`;
+            particle.element.style.height = `${size}px`;
+            particle.element.style.left = `${newX - size / 2}px`;
+            particle.element.style.top = `${newY - size / 2}px`;
+
+            particle.x = newX;
+            particle.y = newY;
+            prevX = newX;
+            prevY = newY;
+        });
+
+        requestAnimationFrame(animateTail);
+    }
+
+    // Add hover effect listeners
+    const hoverableElements = document.querySelectorAll('a, button, input, [role="button"]');
+    hoverableElements.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+
+    requestAnimationFrame(animateTail);
+});

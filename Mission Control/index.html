@@ -106,9 +106,54 @@
             background-size: 400px 400px;
             animation: move-stars 100s linear infinite;
         }
+
+        /* Custom futuristic cursor */
+        html {
+            cursor: none;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 10px; /* Smaller and more subtle */
+            height: 10px;
+            border-radius: 50%;
+            background-color: #38BDF8; /* Celestial Blue */
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 0 10px 2px #38BDF8, 0 0 20px 4px rgba(56, 189, 248, 0.5);
+        }
+
+        .custom-cursor.hover {
+            transform: scale(1.5);
+        }
+
+
+        /* Scanline effect */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(12, 10, 9, 0) 0%, rgba(12, 10, 9, 0.8) 50%, rgba(12, 10, 9, 0) 100%);
+            animation: scan 8s linear infinite;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 200px; }
+        }
     </style>
 </head>
 <body class="relative min-h-screen flex flex-col items-center justify-center font-sans antialiased text-sm md:text-base">
+    <div class="custom-cursor"></div>
     <!-- The starfield background layers -->
     <div class="stars"></div>
     <div class="stars2"></div>
@@ -119,9 +164,9 @@
 
         <!-- Header / Navigation -->
         <header class="flex items-center justify-between p-6 md:p-8">
-            <div class="flex items-center space-x-2">
+            <div class="relative flex items-center space-x-2 cursor-pointer">
                 <!-- Z.E.N.I.T.H. Logo with refined periods -->
-                <h1 class="text-xl md:text-2xl font-bold text-white tracking-widest font-data">
+                <h1 id="zenith-logo" class="text-xl md:text-2xl font-bold text-white tracking-widest font-data">
                     Z<span class="text-celestial-blue/70">.</span>E<span class="text-celestial-blue/70">.</span>N<span class="text-celestial-blue/70">.</span>I<span class="text-celestial-blue/70">.</span>T<span class="text-celestial-blue/70">.</span>H
                 </h1>
             </div>
@@ -194,6 +239,9 @@
                     <p id="volume-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">$271,402.55</p>
                 </div>
 
+            </div>
+            <div class="text-center mt-4 text-stardust-grey text-xs">
+                Powered by <a href="https://doma.xyz/" target="_blank" rel="noopener noreferrer" class="text-celestial-blue hover:underline">Doma</a>
             </div>
         </footer>
     </div>
