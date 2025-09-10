@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z.E.N.I.T.H. - The Apex of Domain Finance</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind theme configuration to match the design plan
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'void-black': '#0C0A09',
+                        'dark-matter': '#18181B',
+                        'celestial-blue': '#38BDF8', // New Primary Accent
+                        'cosmic-teal': '#06B6D4',
+                        'stardust-grey': '#A1A1AA',
+                        'supernova-green': '#22C55E',
+                        'red-giant': '#DC2626',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Inter (UI) & Fira Code (Data) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles adhering to the Celestial Precision design philosophy */
+        body {
+            background-color: #0C0A09; /* Void Black */
+            color: #A1A1AA; /* Stardust Grey */
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrollbars from the starfield */
+        }
+
+        /* Use Fira Code for numerical data to reinforce precision */
+        .font-data {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Custom Celestial Blue glow effect for primary actions */
+        .glow-blue-focus:focus-within {
+            box-shadow: 0 0 0 2px #18181B, 0 0 0 4px #38BDF8, 0 0 20px 5px rgba(56, 189, 248, 0.3);
+        }
+        .glow-blue-hover:hover {
+            box-shadow: 0 0 15px 2px rgba(56, 189, 248, 0.3);
+        }
+
+        /* --- Animated Starfield Background --- */
+        @keyframes move-stars {
+            from { transform: translateY(0px); }
+            to   { transform: translateY(-2000px); }
+        }
+
+        .stars, .stars2, .stars3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: transparent;
+            z-index: -1;
+        }
+
+        .stars {
+            background-image:
+                radial-gradient(1px 1px at 20px 30px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 40px 70px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 50px 160px, #CCCCCC, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 90px 40px, #DDDDDD, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 130px 80px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 160px 120px, #CCCCCC, rgba(255,255,255,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: move-stars 200s linear infinite;
+        }
+
+        .stars2 {
+            background-image:
+                radial-gradient(1px 1px at 10px 90px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(2px 2px at 30px 50px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 110px 100px, #CCCCCC, rgba(255,255,255,0)),
+                radial-gradient(2px 2px at 140px 180px, #DDDDDD, rgba(255,255,255,0)),
+                radial-gradient(1px 1px at 180px 20px, #FFFFFF, rgba(255,255,255,0));
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            animation: move-stars 150s linear infinite;
+        }
+
+        .stars3 {
+            background-image:
+                radial-gradient(2px 2px at 60px 200px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(2px 2px at 200px 250px, #FFFFFF, rgba(255,255,255,0)),
+                radial-gradient(3px 3px at 150px 320px, #CCCCCC, rgba(255,255,255,0));
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            animation: move-stars 100s linear infinite;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col items-center justify-center font-sans antialiased text-sm md:text-base">
+    <!-- The starfield background layers -->
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10 flex flex-col w-full min-h-screen p-4">
+
+        <!-- Header / Navigation -->
+        <header class="flex items-center justify-between p-6 md:p-8">
+            <div class="flex items-center space-x-2">
+                <!-- Z.E.N.I.T.H. Logo with refined periods -->
+                <h1 class="text-xl md:text-2xl font-bold text-white tracking-widest font-data">
+                    Z<span class="text-celestial-blue/70">.</span>E<span class="text-celestial-blue/70">.</span>N<span class="text-celestial-blue/70">.</span>I<span class="text-celestial-blue/70">.</span>T<span class="text-celestial-blue/70">.</span>H
+                </h1>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm">
+                <a href="#" class="text-stardust-grey hover:text-white transition-colors duration-300">Exchange</a>
+                <a href="#" class="text-stardust-grey hover:text-white transition-colors duration-300">Constellations</a>
+                <a href="#" class="text-stardust-grey hover:text-white transition-colors duration-300">Docs</a>
+            </nav>
+            <button id="connect-wallet-button" class="bg-celestial-blue text-void-black font-bold py-2 px-5 rounded-lg text-sm transition-all duration-300 glow-blue-hover transform hover:scale-105 flex items-center space-x-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+                <span>Connect Wallet</span>
+            </button>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="flex-grow flex flex-col items-center justify-center text-center">
+            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight md:leading-tight max-w-4xl tracking-tighter">
+                The Apex of Domain Finance.
+            </h1>
+            <p class="text-lg md:text-xl text-stardust-grey mt-4 max-w-2xl">
+                Onboard any Web2 asset. Trade the future of digital real estate.
+            </p>
+
+            <!-- Central Action Hub: Entry point to the Genesis Engine -->
+            <div class="relative w-full max-w-2xl mt-12">
+                <form id="domain-form" class="group w-full">
+                    <div class="relative flex items-center bg-dark-matter border border-gray-700 rounded-xl transition-all duration-300 glow-blue-focus">
+                        <label for="domain-input" class="sr-only">Domain Name</label>
+                        <input
+                            id="domain-input"
+                            type="text"
+                            placeholder="Enter Your Domain to Begin its Ascent"
+                            class="w-full h-16 bg-transparent text-white placeholder-gray-500 pl-6 pr-40 text-lg outline-none rounded-xl"
+                        >
+                        <button id="analyze-button" type="submit" class="absolute right-3 flex items-center justify-center bg-celestial-blue text-void-black font-bold h-12 px-6 rounded-lg text-base transform transition-all duration-300 group-hover:scale-105">
+                            <span id="button-text">Analyze</span>
+                            <svg id="button-spinner" class="animate-spin h-5 w-5 text-void-black hidden" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+             <a href="#" class="text-cosmic-teal mt-6 text-sm hover:underline">Or, go directly to the Exchange &rarr;</a>
+        </main>
+
+        <!-- Live Market Indicators Bar -->
+        <footer class="p-6 md:p-8">
+            <div class="w-full max-w-7xl mx-auto backdrop-blur-sm bg-black/20 border border-gray-800 rounded-xl p-4 flex flex-col md:flex-row items-center justify-around text-center">
+
+                <div class="p-2 w-full md:w-1/3">
+                    <p class="text-xs text-stardust-grey uppercase tracking-widest">ZVI (Zenith Volatility Index)</p>
+                    <p id="zvi-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">42.15</p>
+                </div>
+
+                <div class="h-8 w-px bg-gray-700 hidden md:block"></div>
+                <div class="w-full h-px bg-gray-700 md:hidden my-2"></div>
+
+                <div class="p-2 w-full md:w-1/3">
+                    <p class="text-xs text-stardust-grey uppercase tracking-widest">TVO (Total Value Onboarded)</p>
+                    <p id="tvo-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">$1,294,833.10</p>
+                </div>
+
+                <div class="h-8 w-px bg-gray-700 hidden md:block"></div>
+                <div class="w-full h-px bg-gray-700 md:hidden my-2"></div>
+
+                <div class="p-2 w-full md:w-1/3">
+                    <p class="text-xs text-stardust-grey uppercase tracking-widest">24h Volume</p>
+                    <p id="volume-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">$271,402.55</p>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+
+    <script src="logic.js" defer></script>
+</body>
+</html>
