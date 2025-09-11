@@ -1,0 +1,41 @@
+
+@keyframes move-stars {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+.stars, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background-image: radial-gradient(1px 1px at 20px 30px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(1px 1px at 40px 70px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(1px 1px at 50px 160px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(1px 1px at 90px 40px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(2px 2px at 130px 80px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(2px 2px at 160px 120px, #FFFFFF, rgba(255,255,255,0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: move-stars 150s linear infinite;
+}
+
+.stars2 {
+  background-image: radial-gradient(1px 1px at 10px 90px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(2px 2px at 80px 40px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(2px 2px at 120px 190px, #FFFFFF, rgba(255,255,255,0));
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  animation: move-stars 200s linear infinite;
+}
+
+.stars3 {
+  background-image: radial-gradient(2px 2px at 60px 200px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(2px 2px at 140px 180px, #FFFFFF, rgba(255,255,255,0)), radial-gradient(3px 3px at 190px 40px, #FFFFFF, rgba(255,255,255,0));
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: move-stars 100s linear infinite;
+}
