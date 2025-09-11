@@ -23,6 +23,7 @@
 ---
 
 ## 🌌 Brand Philosophy: *Celestial Precision*
+<img src="logo.png" alt="Z.E.N.I.T.H. Logo" width="120"/>
 
 **Z.E.N.I.T.H.** is more than a protocol.
 It is a **precision observatory for finance**, inspired by celestial mechanics and built for the ascent of digital assets.
