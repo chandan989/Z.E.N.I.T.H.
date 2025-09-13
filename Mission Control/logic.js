@@ -21,14 +21,21 @@ function updateMarketData() {
 }
 setInterval(updateMarketData, 2500);
 
-// --- Form Submission Simulation ---
+// --- Form Submission ---
 const domainForm = document.getElementById('domain-form');
+const domainInput = document.getElementById('domain-input');
 const analyzeButton = document.getElementById('analyze-button');
 const buttonText = document.getElementById('button-text');
 const buttonSpinner = document.getElementById('button-spinner');
 
 domainForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    const domain = domainInput.value;
+
+    if (!domain) {
+        alert('Please enter a domain to analyze.');
+        return;
+    }
 
     // Show loading state
     buttonText.classList.add('hidden');
@@ -37,16 +44,19 @@ domainForm.addEventListener('submit', function(event) {
 
     // Simulate analysis and redirect
     setTimeout(() => {
-        // In a real app, this would redirect to the Genesis Engine page
-        // with the domain as a query parameter.
-        alert('Analysis complete! Redirecting to the Genesis Engine...');
+        // This is a simulation. In a real scenario, an actual analysis of the
+        // domain's compatibility for web3 conversion would happen here.
+        // For this version, we'll assume the analysis is always successful.
 
-        // Reset button state
-        buttonText.classList.remove('hidden');
-        buttonSpinner.classList.add('hidden');
-        analyzeButton.disabled = false;
+        console.log(`Analysis complete for ${domain}. Redirecting to Genesis Engine...`);
+
+        // Redirect to the Genesis Engine, passing the domain as a query parameter.
+        window.location.href = `https://zenith-genesis-engine.vercel.app/?domain=${encodeURIComponent(domain)}`;
+
+        // No need to reset button state as the page will navigate away.
     }, 2000); // Simulate a 2-second analysis
 });
+
 
 // --- Wallet Connection ---
 const connectWalletButton = document.getElementById('connect-wallet-button');
