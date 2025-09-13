@@ -1,0 +1,26 @@
+/* Z.E.I.N.T.H. Exchange/src/pages/Exchange.css */
+
+.stellar-panel {
+    position: relative;
+    border: 1px solid #18181B; /* dark-matter */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stellar-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.5rem; /* Match your rounded-lg */
+    border: 1px solid transparent;
+    background: radial-gradient(400px at var(--x) var(--y), rgba(6, 182, 212, 0.2), transparent 80%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none; /* Make sure it doesn't block interactions */
+}
+
+.stellar-panel:hover::before {
+    opacity: 1;
+}

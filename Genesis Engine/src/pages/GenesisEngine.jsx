@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import StepIndicator from '../components/StepIndicator';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -18,6 +18,14 @@ export const GenesisEngine = () => {
     const [verificationError, setVerificationError] = useState("");
     const [copied, setCopied] = useState(false);
     const [showConfirmButtons, setShowConfirmButtons] = useState(false);
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const domainParam = urlParams.get('domain');
+        if (domainParam) {
+            setDomain(domainParam);
+        }
+    }, []);
 
     const handleVerificationSubmit = (e) => {
         e.preventDefault();
