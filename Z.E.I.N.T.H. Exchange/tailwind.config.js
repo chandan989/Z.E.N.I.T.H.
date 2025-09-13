@@ -1,4 +1,6 @@
 // Z.E.I.N.T.H. Exchange/tailwind.config.js
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -21,5 +23,16 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(function({ addUtilities, theme }) {
+          addUtilities({
+            '.glow-blue-focus:focus-within': {
+              boxShadow: `0 0 0 2px ${theme('colors.dark-matter')}, 0 0 0 4px ${theme('colors.celestial-blue')}, 0 0 20px 5px rgba(56, 189, 248, 0.3)`,
+            },
+            '.glow-blue-hover:hover': {
+              boxShadow: '0 0 15px 2px rgba(56, 189, 248, 0.3)',
+            },
+          })
+        })
+    ],
 };
