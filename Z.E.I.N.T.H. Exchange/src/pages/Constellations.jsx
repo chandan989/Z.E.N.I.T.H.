@@ -1,45 +1,58 @@
+// Z.E.I.N.T.H. Exchange/src/pages/Constellations.jsx
 import React from 'react';
-import Layout from '../components/Layout';
+import { motion } from 'framer-motion';
 import { constellations } from '../data/mockData';
+import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+
+const ConstellationCard = ({ constellation, index }) => {
+    const isPositive = constellation.change.startsWith('+');
+    return (
+        <motion.div
+            className="bg-dark-matter/30 backdrop-blur-xl border border-stardust-grey/10 rounded-lg p-6 flex flex-col"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+        >
+            <div className="flex justify-between items-start">
+                <div>
+                    <h2 className="text-xl font-bold text-bright-white">{constellation.name}</h2>
+                    <p className="text-sm text-stardust-grey">{constellation.description}</p>
+                </div>
+                <div className="text-right font-fira-code">
+                    <p className="text-xl text-bright-white">{constellation.price}</p>
+                    <p className={isPositive ? 'text-supernova-green' : 'text-red-giant'}>{constellation.change}</p>
+                </div>
+            </div>
+            <div className="flex-grow w-full h-24 mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={constellation.history}>
+                        <defs>
+                            <linearGradient id={`grad-${constellation.id}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#38BDF8" stopOpacity={0.4}/>
+                                <stop offset="95%" stopColor="#38BDF8" stopOpacity={0}/>
+                            </linearGradient>
+                        </defs>
+                        <Area type="monotone" dataKey="value" stroke="#38BDF8" strokeWidth={2} fill={`url(#grad-${constellation.id})`} />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </div>
+            <button className="mt-6 bg-celestial-blue/10 text-celestial-blue font-bold py-2 px-4 rounded-lg hover:bg-celestial-blue/20 transition-colors">
+                View Details
+            </button>
+        </motion.div>
+    );
+};
 
 const Constellations = () => {
     return (
-        <Layout>
-            <main className="flex-grow flex flex-col items-center px-4 py-12">
-                <div className="text-center w-full max-w-4xl">
-                    <h1 className="text-5xl font-bold text-white">Constellations</h1>
-                    <p className="text-stardust-grey mt-2">AI-curated indices for thematic, intelligent trading.</p>
-                </div>
-
-                <div className="mt-12 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {constellations.map(c => (
-                        <div key={c.id} className="bg-dark-matter border border-gray-800 rounded-xl p-6 hover:border-celestial-blue transition-colors">
-                            <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-2xl font-bold text-white">{c.name}</h2>
-                                <div className={`text-lg font-data ${c.performance > 0 ? 'text-supernova-green' : 'text-red-giant'}`}>
-                                    {c.performance > 0 ? '+' : ''}{c.performance.toFixed(1)}%
-                                </div>
-                            </div>
-                            <p className="text-stardust-grey mb-6">{c.description}</p>
-                            <div>
-                                <h3 className="text-sm uppercase tracking-wider text-stardust-grey mb-2">Assets</h3>
-                                <div className="space-y-2">
-                                    {c.assets.map(asset => (
-                                        <div key={asset.id} className="flex justify-between items-center bg-void-black p-2 rounded-lg">
-                                            <span className="font-bold text-white">{asset.ticker}</span>
-                                            <span className="text-xs text-stardust-grey">{asset.domain}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <button className="mt-6 w-full h-10 bg-celestial-blue text-void-black font-bold rounded-lg transition-opacity hover:opacity-90">
-                                Trade {c.name}
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            </main>
-        </Layout>
+        <div className="p-4 h-full">
+            <h1 className="text-3xl font-bold text-white mb-6">Constellations</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {constellations.map((c, index) => (
+                    <ConstellationCard key={c.id} constellation={c} index={index} />
+                ))}
+            </div>
+        </div>
     );
 };
 
