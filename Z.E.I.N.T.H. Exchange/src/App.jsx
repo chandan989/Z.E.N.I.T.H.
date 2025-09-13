@@ -1,26 +1,25 @@
 // Z.E.I.N.T.H. Exchange/src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
+import { useState } from 'react';
+import Dashboard from './pages/Dashboard';
 import Exchange from './pages/Exchange';
-import Constellations from './pages/Constellations';
-import Portfolio from './pages/Protfolio';
-import Docs from './pages/Docs';
 
 function App() {
-    return (
-        <Router>
-            <Layout>
-                <Routes>
-                    <Route path="/" element={<Exchange />} />
-                    <Route path="/exchange" element={<Exchange />} />
-                    <Route path="/constellations" element={<Constellations />} />
-                    <Route path="/portfolio" element={<Portfolio />} />
-                    <Route path="/docs" element={<Docs />} />
-                </Routes>
-            </Layout>
-        </Router>
-    );
+  const [page, setPage] = useState('dashboard');
+  const [selectedAsset, setSelectedAsset] = useState(null);
+
+  const navigate = (page, data = null) => {
+    setPage(page);
+    if (page === 'exchange') {
+      setSelectedAsset(data);
+    }
+  };
+
+  return (
+    <>
+      {page === 'dashboard' && <Dashboard onNavigate={navigate} />}
+      {page === 'exchange' && <Exchange onNavigate={navigate} asset={selectedAsset} />}
+    </>
+  );
 }
 
 export default App;

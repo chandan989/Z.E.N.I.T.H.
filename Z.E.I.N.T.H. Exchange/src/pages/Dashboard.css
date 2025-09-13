@@ -1,0 +1,107 @@
+/* Z.E.I.N.T.H. Exchange/src/pages/Dashboard.css */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+.stat-card {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid #18181B;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: #38BDF8;
+}
+
+.ai-insights-panel {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid #18181B;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+}
+
+.asset-table-container {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid #18181B;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    overflow-x: auto; /* For responsiveness */
+}
+
+.asset-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.asset-table th,
+.asset-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #18181B;
+}
+
+.asset-table th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #A1A1AA;
+}
+
+.asset-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.asset-table tbody tr:hover {
+    background-color: rgba(56, 189, 248, 0.05);
+}
+
+/* --- Detailed View --- */
+.detailed-view-grid {
+    display: grid;
+    height: calc(100vh - 180px); /* Adjust based on header/padding */
+    grid-template-columns: 2fr 1fr; /* Main content area and a sidebar */
+    grid-template-rows: 1fr; /* A single row to define the two columns */
+    grid-template-areas: "main-content sidebar";
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.detailed-main-content {
+    grid-area: main-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.detailed-sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.detail-panel {
+    background: rgba(24, 24, 27, 0.7);
+    border: 1px solid #18181B;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    overflow: hidden; /* To contain child elements */
+}
+
+.detailed-chart { flex-grow: 1; min-height: 0; } /* Allow chart to take up remaining space */
+.detailed-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.detailed-orders { flex-grow: 1; min-height: 0; }
+.detailed-command { flex-shrink: 0; } /* Prevent command module from shrinking */
