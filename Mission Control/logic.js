@@ -11,13 +11,19 @@ const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'curre
 
 function updateMarketData() {
     currentZVI += (Math.random() - 0.5) * 0.1;
-    zviElement.textContent = Math.max(10, Math.min(90, currentZVI)).toFixed(2);
+    if (zviElement.dataset.iscounting !== 'true') {
+        zviElement.textContent = Math.max(10, Math.min(90, currentZVI)).toFixed(2);
+    }
 
     currentTVO += Math.random() * 50;
-    tvoElement.textContent = formatCurrency(currentTVO);
+    if (tvoElement.dataset.iscounting !== 'true') {
+        tvoElement.textContent = formatCurrency(currentTVO);
+    }
 
     currentVolume += (Math.random() - 0.4) * 100;
-    volumeElement.textContent = formatCurrency(currentVolume);
+    if(volumeElement.dataset.iscounting !== 'true') {
+        volumeElement.textContent = formatCurrency(currentVolume);
+    }
 }
 setInterval(updateMarketData, 2500);
 
@@ -149,4 +155,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     requestAnimationFrame(animateTail);
+
+    // --- Scroll Animations ---
+    const scrollElements = document.querySelectorAll('.scroll-animate');
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+
+        return (
+            elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+        );
+    };
+
+    const displayScrollElement = (element) => {
+        element.classList.add('visible');
+    };
+
+    const hideScrollElement = (element) => {
+        element.classList.remove('visible');
+    };
+
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 1.25)) {
+                displayScrollElement(el);
+            } else {
+                hideScrollElement(el);
+            }
+        })
+    }
+
+    window.addEventListener('scroll', () => {
+        handleScrollAnimation();
+    });
+
+    // --- Count-Up Animation ---
+    const countUpElements = document.querySelectorAll('[data-countup]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const endVal = parseFloat(el.getAttribute('data-countup'));
+                const duration = 2000; // 2 seconds
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const progress = Math.min((currentTime - startTime) / duration, 1);
+                    const currentVal = progress * endVal;
+
+                    if (el.id === 'tvo-value' || el.id === 'volume-value') {
+                        el.textContent = formatCurrency(currentVal);
+                    } else {
+                        el.textContent = currentVal.toFixed(2);
+                    }
+                    el.dataset.iscounting = 'true';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        el.dataset.iscounting = 'false';
+                    }
+                }
+
+                requestAnimationFrame(animation);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    countUpElements.forEach(el => {
+        observer.observe(el);
+    });
 });

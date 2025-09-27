@@ -37,7 +37,7 @@
             background-color: #0C0A09; /* Void Black */
             color: #A1A1AA; /* Stardust Grey */
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevent scrollbars from the starfield */
+            overflow-x: hidden; /* Prevent horizontal scrollbars */
         }
 
         /* Use Fira Code for numerical data to reinforce precision */
@@ -150,9 +150,47 @@
             0% { background-position: 0 0; }
             100% { background-position: 0 200px; }
         }
+
+        /* --- Animation Classes --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
-<body class="relative min-h-screen flex flex-col items-center justify-center font-sans antialiased text-sm md:text-base">
+<body class="relative font-sans antialiased text-sm md:text-base">
     <div class="custom-cursor"></div>
     <!-- The starfield background layers -->
     <div class="stars"></div>
@@ -160,10 +198,10 @@
     <div class="stars3"></div>
 
     <!-- Main Content Wrapper -->
-    <div class="relative z-10 flex flex-col w-full min-h-screen p-4">
+    <div class="relative z-10 flex flex-col w-full">
 
         <!-- Header / Navigation -->
-        <header class="flex items-center justify-between p-6 md:p-8">
+        <header class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-6 md:p-8">
             <div class="relative flex items-center space-x-2 cursor-pointer">
                 <!-- Z.E.N.I.T.H. Logo with refined periods -->
                 <h1 id="zenith-logo" class="text-xl md:text-2xl font-bold text-white tracking-widest font-data">
@@ -171,8 +209,8 @@
                 </h1>
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-sm">
-                <a href="#" class="text-stardust-grey hover:text-white transition-colors duration-300">Exchange</a>
-                <a href="#" class="text-stardust-grey hover:text-white transition-colors duration-300">Constellations</a>
+                <a href="#exchange" class="text-stardust-grey hover:text-white transition-colors duration-300">Exchange</a>
+                <a href="#constellations" class="text-stardust-grey hover:text-white transition-colors duration-300">Constellations</a>
                 <a href="#" class="text-stardust-grey hover:text-white transition-colors duration-300">Docs</a>
             </nav>
             <button id="connect-wallet-button" class="bg-celestial-blue text-void-black font-bold py-2 px-5 rounded-lg text-sm transition-all duration-300 glow-blue-hover transform hover:scale-105 flex items-center space-x-2">
@@ -182,16 +220,16 @@
         </header>
 
         <!-- Hero Section -->
-        <main class="flex-grow flex flex-col items-center justify-center text-center">
-            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight md:leading-tight max-w-4xl tracking-tighter">
+        <main class="h-screen flex flex-col items-center justify-center text-center p-4">
+            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight md:leading-tight max-w-4xl tracking-tighter fade-in-up" style="animation-delay: 0.2s;">
                 The Apex of Domain Finance.
             </h1>
-            <p class="text-lg md:text-xl text-stardust-grey mt-4 max-w-2xl">
+            <p class="text-lg md:text-xl text-stardust-grey mt-4 max-w-2xl fade-in-up" style="animation-delay: 0.4s;">
                 Onboard any Web2 asset. Trade the future of digital real estate.
             </p>
 
             <!-- Central Action Hub: Entry point to the Genesis Engine -->
-            <div class="relative w-full max-w-2xl mt-12">
+            <div class="relative w-full max-w-2xl mt-12 fade-in-up" style="animation-delay: 0.6s;">
                 <form id="domain-form" class="group w-full">
                     <div class="relative flex items-center bg-dark-matter border border-gray-700 rounded-xl transition-all duration-300 glow-blue-focus">
                         <label for="domain-input" class="sr-only">Domain Name</label>
@@ -201,7 +239,7 @@
                             placeholder="Enter Your Domain to Begin its Ascent"
                             class="w-full h-16 bg-transparent text-white placeholder-gray-500 pl-6 pr-40 text-lg outline-none rounded-xl"
                         >
-                        <button id="analyze-button" type="submit" class="absolute right-3 flex items-center justify-center bg-celestial-blue text-void-black font-bold h-12 px-6 rounded-lg text-base transform transition-all duration-300 group-hover:scale-105">
+                        <button id="analyze-button" type="submit" class="absolute right-3 flex items-center justify-center bg-celestial-blue text-void-black font-bold h-12 px-6 rounded-lg text-base transform transition-all duration-300 group-hover:scale-105 pulse-animation">
                             <span id="button-text">Analyze</span>
                             <svg id="button-spinner" class="animate-spin h-5 w-5 text-void-black hidden" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -211,16 +249,209 @@
                     </div>
                 </form>
             </div>
-             <a href="#" class="text-cosmic-teal mt-6 text-sm hover:underline">Or, go directly to the Exchange &rarr;</a>
+             <a href="#exchange" class="text-cosmic-teal mt-6 text-sm hover:underline fade-in-up" style="animation-delay: 0.8s;">Or, go directly to the Exchange &rarr;</a>
         </main>
 
+        <!-- What is DomainFi Section -->
+        <section class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 text-center scroll-animate">
+            <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">DomainFi: The New Frontier</h2>
+            <p class="mt-4 text-lg md:text-xl text-stardust-grey max-w-3xl mx-auto">
+                Z.E.N.I.T.H. pioneers the next evolution of Real-World Asset (RWA) tokenization by focusing on high-value digital assets: domain names. We transform illiquid Web2 domains into liquid, tradable financial instruments on the blockchain, unlocking new avenues for investment and speculation.
+            </p>
+        </section>
+
+        <!-- Brand Philosophy Section -->
+        <section class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 scroll-animate">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">Celestial Precision: Our Philosophy</h2>
+                 <p class="mt-4 text-lg md:text-xl text-stardust-grey max-w-3xl mx-auto">
+                    Inspired by celestial mechanics, our protocol is built on three core principles.
+                </p>
+            </div>
+            <div class="mt-16 grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-dark-matter/50 border border-gray-800 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-white">Signal Over Noise</h3>
+                    <p class="mt-3 text-stardust-grey">The interface shows only what matters. We filter out distractions to provide pure, actionable insight, allowing traders to act with clarity and confidence.</p>
+                </div>
+                <div class="bg-dark-matter/50 border border-gray-800 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-white">Performance as a Feature</h3>
+                    <p class="mt-3 text-stardust-grey">Zero-latency and instant response are fundamental. Every interaction is engineered to feel faster than thought, providing a tangible competitive edge.</p>
+                </div>
+                <div class="bg-dark-matter/50 border border-gray-800 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-white">Structured Ascent</h3>
+                    <p class="mt-3 text-stardust-grey">Users are guided through clear, progressive steps. The journey from asset onboarding to trading is designed to be as intuitive as an asset’s climb toward its zenith.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DomaScore AI Section -->
+        <section class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 flex flex-col md:flex-row items-center scroll-animate">
+            <div class="md:w-1/2 pr-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">The DomaScore AI</h2>
+                <p class="mt-4 text-lg text-stardust-grey">At the heart of Z.E.N.I.T.H. is the DomaScore AI, a sophisticated valuation engine that provides a clear, data-driven assessment of any domain's intrinsic value. It analyzes dozens of data streams in real-time to generate a single, comprehensive score.</p>
+                <div class="mt-8 space-y-4 text-left">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-celestial-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p><span class="font-bold text-white">Valuation Constellation:</span> The DomaScore is visualized as a constellation, where stars are sized and brightened by factors like SEO authority, traffic metrics, brandability, TLD strength, and commercial potential.</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-celestial-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p><span class="font-bold text-white">Astrolabe UI:</span> The score is presented in a circular, astrolabe-style interface, blending ancient celestial navigation with modern data science to provide a valuation you can trust.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-12 md:mt-0">
+                <!-- Placeholder for a visual representation of the DomaScore Astrolabe -->
+                <div class="w-full h-80 bg-dark-matter/50 border border-gray-800 rounded-xl flex items-center justify-center">
+                    <p class="text-stardust-grey">[Visual of DomaScore Astrolabe]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Genesis Engine Section -->
+        <section class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 scroll-animate">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">The Genesis Engine: An Asset's Ascent</h2>
+                <p class="mt-4 text-lg md:text-xl text-stardust-grey max-w-3xl mx-auto">
+                    Our guided, three-step process makes onboarding a digital asset a seamless and rewarding experience. Each step is designed for clarity, security, and speed.
+                </p>
+            </div>
+            <div class="mt-16 grid md:grid-cols-3 gap-4 text-center relative">
+                <!-- Dashed lines connecting steps -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-px">
+                    <svg width="100%" height="2" class="text-gray-700">
+                        <line x1="0" y1="1" x2="100%" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="8 8"/>
+                    </svg>
+                </div>
+
+                <div class="relative z-10 bg-void-black p-4">
+                    <div class="bg-dark-matter border border-gray-800 rounded-xl p-8 h-full flex flex-col">
+                        <p class="text-sm font-bold text-celestial-blue">STEP 1/3</p>
+                        <h3 class="mt-2 text-xl font-bold text-white">Ownership Verification</h3>
+                        <p class="mt-3 text-stardust-grey flex-grow">Prove ownership by adding a simple TXT record to your domain's DNS settings. A golden monospace snippet with a 'Copy to Clipboard' function makes this effortless.</p>
+                    </div>
+                </div>
+                <div class="relative z-10 bg-void-black p-4">
+                    <div class="bg-dark-matter border border-gray-800 rounded-xl p-8 h-full flex flex-col">
+                        <p class="text-sm font-bold text-celestial-blue">STEP 2/3</p>
+                        <h3 class="mt-2 text-xl font-bold text-white">The Apogee Moment</h3>
+                        <p class="mt-3 text-stardust-grey flex-grow">Witness the DomaScore AI reveal your asset's valuation through a stunning constellation animation. This is the peak moment where your domain's potential is quantified.</p>
+                    </div>
+                </div>
+                <div class="relative z-10 bg-void-black p-4">
+                    <div class="bg-dark-matter border border-gray-800 rounded-xl p-8 h-full flex flex-col">
+                        <p class="text-sm font-bold text-celestial-blue">STEP 3/3</p>
+                        <h3 class="mt-2 text-xl font-bold text-white">Tokenization & Launch</h3>
+                        <p class="mt-3 text-stardust-grey flex-grow">With a secure wallet confirmation, your asset is minted. A 'Launch Successful' screen with star-confetti confirms the birth of your new digital asset, with clear next steps to your portfolio or the exchange.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exchange and Constellations Section -->
+        <section id="exchange" class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 flex flex-col md:flex-row items-center scroll-animate">
+            <div class="md:w-1/2 mt-12 md:mt-0 md:order-2">
+                <!-- Placeholder for a visual of the Exchange UI -->
+                <div class="w-full h-80 bg-dark-matter/50 border border-gray-800 rounded-xl flex items-center justify-center">
+                    <p class="text-stardust-grey">[Visual of Z.E.N.I.T.H. Exchange]</p>
+                </div>
+            </div>
+            <div id="constellations" class="md:w-1/2 md:pr-8 md:order-1">
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">The Observatory: A Pro-Grade Exchange</h2>
+                <p class="mt-4 text-lg text-stardust-grey">The Z.E.N.I.T.H. Exchange is a zero-latency trading terminal designed for professional traders. It features a candlestick Skychart on a faint star grid, a high-speed Command Module for orders, and our unique "Constellations."</p>
+                <div class="mt-8 space-y-4 text-left">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-celestial-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p><span class="font-bold text-white">Wow Factor: Constellations:</span> More than just watchlists, Constellations are AI-curated thematic indices (e.g., Orion-AI-10, eCom-Gems, Geo-Domains). This intelligent grouping provides unique market insights that no other platform offers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 scroll-animate">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">Roadmap to Decentralization</h2>
+                <p class="mt-4 text-lg md:text-xl text-stardust-grey max-w-3xl mx-auto">
+                    Our mission is to build the future of decentralized finance, one milestone at a time.
+                </p>
+            </div>
+            <div class="mt-16 space-y-12">
+                <!-- Q4 2025 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/4 text-center md:text-right pr-8">
+                        <p class="text-2xl font-bold text-celestial-blue">Q4 2025</p>
+                        <p class="text-stardust-grey">Mainnet Activation</p>
+                    </div>
+                    <div class="md:w-3/4 border-l-2 border-celestial-blue pl-8 py-4">
+                        <p class="text-white">Mainnet deployment, Genesis Engine expansion, and automated neural analytics.</p>
+                    </div>
+                </div>
+                <!-- Q1 2026 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/4 text-center md:text-right pr-8">
+                        <p class="text-2xl font-bold text-celestial-blue">Q1 2026</p>
+                        <p class="text-stardust-grey">Advanced Derivatives</p>
+                    </div>
+                    <div class="md:w-3/4 border-l-2 border-celestial-blue pl-8 py-4">
+                        <p class="text-white">Futures & perpetual contracts, $ZNTH governance token, and enhanced trading features.</p>
+                    </div>
+                </div>
+                <!-- Q2 2026 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/4 text-center md:text-right pr-8">
+                        <p class="text-2xl font-bold text-celestial-blue">Q2 2026</p>
+                        <p class="text-stardust-grey">Decentralized AI Oracle</p>
+                    </div>
+                    <div class="md:w-3/4 border-l-2 border-celestial-blue pl-8 py-4">
+                        <p class="text--white">Validator network, trustless index rebalancing, and community governance.</p>
+                    </div>
+                </div>
+                 <!-- Q3 2026 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/4 text-center md:text-right pr-8">
+                        <p class="text-2xl font-bold text-celestial-blue">Q3 2026</p>
+                        <p class="text-stardust-grey">Mobile App</p>
+                    </div>
+                    <div class="md:w-3/4 border-l-2 border-celestial-blue pl-8 py-4">
+                        <p class="text-white">Quantum-speed mobile trading, cross-reality portfolio management, and optimized neural interface.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture Section -->
+        <section class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-8 text-center scroll-animate">
+            <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tighter">System Architecture</h2>
+            <p class="mt-4 text-lg md:text-xl text-stardust-grey max-w-3xl mx-auto">
+                Z.E.N.I.T.H. is built on a hybrid observatory model, combining the best of Web2 and Web3 technologies for performance, security, and decentralization.
+            </p>
+            <div class="mt-12 font-data text-sm text-left bg-dark-matter/50 border border-gray-800 rounded-xl p-8 max-w-2xl mx-auto">
+                <pre class="whitespace-pre-wrap text-stardust-grey">
+┌───────────────────────────────────────────┐
+│              HYBRID OBSERVATORY           │
+├───────────────────────────────────────────┤
+│ Frontend (Next.js + Tailwind)             │
+│ Backend (Node.js + Express)               │
+│ AI Neural Network (Python + TensorFlow)   │
+│ Blockchain Layer (Doma Protocol, Solidity)│
+└───────────────────────────────────────────┘
+                </pre>
+            </div>
+            <div class="mt-8">
+                <p class="text-stardust-grey">Powered by real-time data streams from:</p>
+                <p class="font-data text-celestial-blue mt-2">SEMrush ◊ Google Trends ◊ X API ◊ Reality Sensors</p>
+            </div>
+        </section>
+
+
         <!-- Live Market Indicators Bar -->
-        <footer class="p-6 md:p-8">
+        <footer class="p-6 md:p-8 scroll-animate">
             <div class="w-full max-w-7xl mx-auto backdrop-blur-sm bg-black/20 border border-gray-800 rounded-xl p-4 flex flex-col md:flex-row items-center justify-around text-center">
 
                 <div class="p-2 w-full md:w-1/3">
                     <p class="text-xs text-stardust-grey uppercase tracking-widest">ZVI (Zenith Volatility Index)</p>
-                    <p id="zvi-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">42.15</p>
+                    <p id="zvi-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1" data-countup="42.15">0</p>
                 </div>
 
                 <div class="h-8 w-px bg-gray-700 hidden md:block"></div>
@@ -228,7 +459,7 @@
 
                 <div class="p-2 w-full md:w-1/3">
                     <p class="text-xs text-stardust-grey uppercase tracking-widest">TVO (Total Value Onboarded)</p>
-                    <p id="tvo-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">$1,294,833.10</p>
+                    <p id="tvo-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1" data-countup="1294833.10">0</p>
                 </div>
 
                 <div class="h-8 w-px bg-gray-700 hidden md:block"></div>
@@ -236,7 +467,7 @@
 
                 <div class="p-2 w-full md:w-1/3">
                     <p class="text-xs text-stardust-grey uppercase tracking-widest">24h Volume</p>
-                    <p id="volume-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1">$271,402.55</p>
+                    <p id="volume-value" class="text-2xl md:text-3xl text-white font-data font-bold mt-1" data-countup="271402.55">0</p>
                 </div>
 
             </div>
