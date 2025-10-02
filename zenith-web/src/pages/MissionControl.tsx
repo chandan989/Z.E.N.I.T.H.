@@ -294,7 +294,7 @@ const MissionControl = () => {
 {`┌───────────────────────────────────────────┐
 │              HYBRID OBSERVATORY           │
 ├───────────────────────────────────────────┤
-│ Frontend (Next.js + Tailwind)             │
+│ Frontend (React.js + Tailwind)            │
 │ Backend (Node.js + Express)               │
 │ AI Neural Network (Python + TensorFlow)   │
 │ Blockchain Layer (Doma Protocol, Solidity)│
