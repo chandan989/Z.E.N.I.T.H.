@@ -87,7 +87,7 @@ The entry point to Z.E.N.I.T.H. → feels like stepping into a high-tech observa
 
 ---
 
-# 📈 The Z.E.N.I.T.H. Exchange (Observatory View)
+# 📈 The Z.E.N.I.T.H. Exchange (Exchange View)
 
 A professional-grade, zero-latency trading terminal.
 

@@ -8,7 +8,7 @@
 
 ## 1.0 Executive Summary & Vision
 
-Z.E.N.I.T.H. is a decentralized protocol designed to serve as the foundational financial layer for the entire domain asset class. Our vision is to build the definitive "Bloomberg Terminal for DomainFi." We will achieve this by creating a self-reinforcing ecosystem that (1) provides a frictionless on-ramp for any Web2 domain to become a liquid on-chain asset via our **Genesis Engine**, and (2) offers institutional-grade financial instruments for these new assets on our **Observatory Exchange**.
+Z.E.N.I.T.H. is a decentralized protocol designed to serve as the foundational financial layer for the entire domain asset class. Our vision is to build the definitive "Bloomberg Terminal for DomainFi." We will achieve this by creating a self-reinforcing ecosystem that (1) provides a frictionless on-ramp for any Web2 domain to become a liquid on-chain asset via our **Genesis Engine**, and (2) offers institutional-grade financial instruments for these new assets on our **Exchange Exchange**.
 
 This project is built natively on the **Doma Protocol**, leveraging its infrastructure for asset tokenization, fractionalization, and on-chain settlement.
 
@@ -113,7 +113,7 @@ This is the multi-stage onboarding process for Anjali.
     2.  Locks the NFT in a vault.
     3.  Mints the corresponding ERC-20 shares to the user's address.
 
-### 4.3 The Z.E.N.I.T.H. Exchange (The "Observatory" View)
+### 4.3 The Z.E.N.I.T.H. Exchange (The "Exchange" View)
 
 This is the high-performance trading terminal for Rohan.
 

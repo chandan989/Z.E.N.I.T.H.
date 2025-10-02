@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Celestial Precision Design System */
+    /* Core Backgrounds */
+    --void-black: 27 9% 4%;
+    --dark-matter: 240 6% 10%;
+    --elevated-surface: 240 5% 13%;
+    
+    /* Accent Colors */
+    --celestial-blue: 203 90% 55%;
+    --celestial-blue-glow: 203 90% 65%;
+    --cosmic-teal: 187 92% 44%;
+    --cosmic-teal-glow: 187 92% 54%;
+    --orion-gold: 43 96% 56%;
+    --orion-gold-glow: 43 96% 66%;
+    --red-giant: 0 73% 50%;
+    --red-giant-glow: 0 73% 60%;
+    
+    /* Neutral Tones */
+    --stardust-grey: 240 4% 64%;
+    --stardust-light: 240 4% 74%;
+    --stardust-dim: 240 4% 44%;
+    
+    /* Semantic Tokens */
+    --background: var(--void-black);
+    --foreground: 240 5% 96%;
+    
+    --card: var(--dark-matter);
+    --card-foreground: 240 5% 96%;
+    
+    --popover: var(--elevated-surface);
+    --popover-foreground: 240 5% 96%;
+    
+    --primary: var(--celestial-blue);
+    --primary-foreground: 240 5% 4%;
+    --primary-glow: var(--celestial-blue-glow);
+    
+    --secondary: var(--orion-gold);
+    --secondary-foreground: 240 5% 4%;
+    --secondary-glow: var(--orion-gold-glow);
+    
+    --muted: var(--elevated-surface);
+    --muted-foreground: var(--stardust-grey);
+    
+    --accent: var(--celestial-blue);
+    --accent-foreground: 240 5% 4%;
+    
+    --destructive: var(--red-giant);
+    --destructive-foreground: 240 5% 96%;
+    
+    --border: 240 6% 18%;
+    --input: 240 6% 18%;
+    --ring: var(--celestial-blue);
+    
+    --radius: 0.5rem;
+    
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
+    --gradient-stellar: linear-gradient(180deg, hsl(var(--void-black)) 0%, hsl(var(--dark-matter)) 100%);
+    --gradient-nebula: radial-gradient(circle at center, hsl(var(--primary) / 0.15) 0%, transparent 70%);
+    
+    /* Shadows & Glows */
+    --glow-cosmic: 0 0 20px hsl(var(--primary) / 0.3);
+    --glow-gold: 0 0 20px hsl(var(--orion-gold) / 0.3);
+    --shadow-elevated: 0 4px 24px hsl(0 0% 0% / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-stellar: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    height: 100%;
+    cursor: none;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased ;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    height: 100%;
+  }
+  
+  .font-data {
+    font-family: 'Fira Code', monospace;
+  }
+}
+
+@layer utilities {
+  .glow-cosmic {
+    box-shadow: var(--glow-cosmic);
+  }
+  
+  .glow-gold {
+    box-shadow: var(--glow-gold);
+  }
+
+  .glow-blue-focus:focus-within {
+    box-shadow: 0 0 0 2px hsl(var(--dark-matter)), 0 0 0 4px hsl(var(--celestial-blue)), 0 0 20px 5px hsla(var(--celestial-blue) / 0.3);
+  }
+  .glow-blue-hover:hover {
+    box-shadow: 0 0 15px 2px hsla(var(--celestial-blue) / 0.3);
+  }
+  
+  .bg-gradient-cosmic {
+    background: var(--gradient-cosmic);
+  }
+  
+  .bg-gradient-stellar {
+    background: var(--gradient-stellar);
+  }
+  
+  .star-grid {
+    background-image: 
+      radial-gradient(circle at 20% 30%, hsl(var(--celestial-blue) / 0.03) 1px, transparent 1px),
+      radial-gradient(circle at 80% 70%, hsl(var(--orion-gold) / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+
+  .stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent;
+    z-index: -1;
+  }
+
+  .stars {
+      background-image:
+          radial-gradient(1px 1px at 20px 30px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 40px 70px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 50px 160px, #CCCCCC, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 90px 40px, #DDDDDD, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 130px 80px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 160px 120px, #CCCCCC, rgba(255,255,255,0));
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      animation: move-stars 200s linear infinite;
+  }
+
+  .stars2 {
+      background-image:
+          radial-gradient(1px 1px at 10px 90px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(2px 2px at 30px 50px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 110px 100px, #CCCCCC, rgba(255,255,255,0)),
+          radial-gradient(2px 2px at 140px 180px, #DDDDDD, rgba(255,255,255,0)),
+          radial-gradient(1px 1px at 180px 20px, #FFFFFF, rgba(255,255,255,0));
+      background-repeat: repeat;
+      background-size: 300px 300px;
+      animation: move-stars 150s linear infinite;
+  }
+
+  .stars3 {
+      background-image:
+          radial-gradient(2px 2px at 60px 200px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(2px 2px at 200px 250px, #FFFFFF, rgba(255,255,255,0)),
+          radial-gradient(3px 3px at 150px 320px, #CCCCCC, rgba(255,255,255,0));
+      background-repeat: repeat;
+      background-size: 400px 400px;
+      animation: move-stars 100s linear infinite;
+  }
+
+  .custom-cursor {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: hsl(var(--celestial-blue));
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: transform 0.1s ease-out;
+      box-shadow: 0 0 10px 2px hsl(var(--celestial-blue)), 0 0 20px 4px hsla(var(--celestial-blue) / 0.5);
+  }
+
+  .custom-cursor.hover {
+      transform: scale(1.5);
+  }
+
+  body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(12, 10, 9, 0) 0%, rgba(12, 10, 9, 0.8) 50%, rgba(12, 10, 9, 0) 100%);
+      animation: scan 8s linear infinite;
+      z-index: -1;
+      opacity: 0.1;
+  }
+
+  .fade-in-up {
+      animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .scroll-animate {
+      opacity: 0;
+      transition: opacity 1s ease-out;
+  }
+
+  .scroll-animate.visible {
+      opacity: 1;
+  }
+
+  .pulse-animation {
+      animation: pulse 2s infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 15s linear infinite;
+  }
+
+  .animate-pulse-fast {
+    animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes move-stars {
+    from { background-position: 0 0; }
+    to   { background-position: 0 -2400px; }
+}
+
+@keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 200px; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-fast {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
