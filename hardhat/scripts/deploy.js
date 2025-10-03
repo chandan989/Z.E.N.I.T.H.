@@ -27,16 +27,24 @@ async function main() {
   await fractionalizer.setGenesisEngineAddress(genesisEngine.target);
   console.log("Granted minting role to GenesisEngine");
 
-  // 6. Deploy Exchange contract
-  const exchange = await hre.ethers.deployContract("Exchange");
+  // 6. Deploy Exchange contract (ETH version - no payment token needed)
+  const exchange = await hre.ethers.deployContract("ExchangeETH");
   await exchange.waitForDeployment();
-  console.log(`Exchange deployed to: ${exchange.target}`);
+  console.log(`Exchange (ETH) deployed to: ${exchange.target}`);
+
+  // 7. Deploy ConstellationManager
+  const constellationManager = await hre.ethers.deployContract("ConstellationManager", [
+    domainNFT.target,
+  ]);
+  await constellationManager.waitForDeployment();
+  console.log(`ConstellationManager deployed to: ${constellationManager.target}`);
 
   console.log("\n--- Deployment Complete ---");
   console.log(`NFT Contract: ${domainNFT.target}`);
   console.log(`Fractionalizer Contract: ${fractionalizer.target}`);
   console.log(`Genesis Engine Contract: ${genesisEngine.target}`);
   console.log(`Exchange Contract: ${exchange.target}`);
+  console.log(`ConstellationManager Contract: ${constellationManager.target}`);
 }
 
 main().catch((error) => {
