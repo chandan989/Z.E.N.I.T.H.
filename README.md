@@ -135,6 +135,29 @@ A deep-dive dashboard for a tokenized asset.
 
 **Data Streams**: SEMrush ◊ Google Trends ◊ X API ◊ Reality Sensors
 
+## 📁 Project Structure
+
+```
+Z.E.N.I.T.H./
+├── zenith-web/          # React frontend (Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/  # Reusable UI components
+│   │   ├── pages/       # Main application pages
+│   │   ├── config/      # Contract addresses & network config
+│   │   ├── lib/         # Contract interaction utilities
+│   │   └── hooks/       # React hooks for blockchain
+│   └── vercel.json      # Vercel deployment config
+├── hardhat/             # Smart contracts & deployment
+│   ├── contracts/       # Solidity smart contracts
+│   ├── scripts/         # Deployment & utility scripts
+│   ├── test/           # Contract tests
+│   └── .env.example    # Environment template
+├── api/                 # Express.js backend API
+│   ├── routes/         # API endpoints
+│   └── vercel.json     # API deployment config
+└── DEPLOYMENT.md       # Detailed deployment guide
+```
+
 ---
 
 # 🗺 Roadmap
@@ -167,23 +190,143 @@ A deep-dive dashboard for a tokenized asset.
 
 # ⚙️ Development Setup
 
+## 🚀 Quick Start
+
 ```bash
 # Clone repository
-git clone https://github.com/[your-username]/zenith-protocol.git
-cd zenith-protocol
+git clone https://github.com/chandan989/Z.E.N.I.T.H..git
+cd Z.E.N.I.T.H.
 
-# Install dependencies
+# Install frontend dependencies
+cd zenith-web
 npm install
 
-# Smart contracts
-cd hardhat && npm install
+# Install smart contract dependencies
+cd ../hardhat
+npm install
 
-# Run dev server
-npm run dev
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your private key and RPC URL
 ```
 
-**Access Interface**:
-🌐 [http://localhost:3000](http://localhost:3000)
+## 🔧 Local Development
+
+### Frontend (React + Vite)
+```bash
+cd zenith-web
+npm run dev
+```
+**Access Interface**: 🌐 [http://localhost:5173](http://localhost:5173)
+
+### Smart Contracts (Hardhat)
+```bash
+cd hardhat
+
+# Compile contracts
+npx hardhat compile
+
+# Deploy to local network
+npx hardhat node
+npx hardhat run scripts/deploy.js --network localhost
+
+# Deploy to Doma testnet
+npx hardhat run scripts/deploy.js --network doma
+```
+
+### API Server (Express)
+```bash
+cd api
+npm install
+npm run dev
+```
+**API Endpoint**: 🌐 [http://localhost:3001](http://localhost:3001)
+
+## 📡 Deployed Contract Addresses (Doma Testnet)
+
+| Contract | Address | Purpose |
+|----------|---------|---------|
+| **GenesisEngine** | `0x3C55823414683725Ee1ae7258E63406bef16A875` | Domain onboarding & tokenization |
+| **DomainNFT** | `0xbE044DCF939A1a968D8085Caa0ac1758F8BDe6C6` | NFT representation of domains |
+| **Fractionalizer** | `0x8146A9122F805c8cCf0881564289Fd10678f7De6` | Fractional token creation |
+| **Exchange** | `0xc9dE8087935FF4fa4BF7d00B4240CA76Ec3d6A03` | Trading & order matching |
+| **ConstellationManager** | `0xDA5452Ff45879fBc7dB100D055Da5FB54aFC0c77` | Portfolio management |
+
+### Network Configuration
+- **Chain ID**: 97476 (Doma Testnet)
+- **RPC URL**: `https://rpc-testnet.doma.xyz`
+- **Block Explorer**: `https://explorer-testnet.doma.xyz`
+
+## 🌐 Vercel Deployment
+
+### Frontend Deployment
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy frontend
+cd zenith-web
+vercel --prod
+```
+
+### Environment Variables for Vercel
+```env
+VITE_GENESIS_ENGINE_ADDRESS=0x3C55823414683725Ee1ae7258E63406bef16A875
+VITE_DOMAIN_NFT_ADDRESS=0xbE044DCF939A1a968D8085Caa0ac1758F8BDe6C6
+VITE_FRACTIONALIZER_ADDRESS=0x8146A9122F805c8cCf0881564289Fd10678f7De6
+VITE_EXCHANGE_ADDRESS=0xc9dE8087935FF4fa4BF7d00B4240CA76Ec3d6A03
+VITE_CONSTELLATION_MANAGER_ADDRESS=0xDA5452Ff45879fBc7dB100D055Da5FB54aFC0c77
+VITE_CHAIN_ID=97476
+VITE_RPC_URL=https://rpc-testnet.doma.xyz
+```
+
+### API Deployment
+```bash
+# Deploy API to Vercel
+cd api
+vercel --prod
+```
+
+## 🔗 MetaMask Setup
+
+1. **Add Doma Testnet**:
+   - Network Name: `Doma Testnet`
+   - RPC URL: `https://rpc-testnet.doma.xyz`
+   - Chain ID: `97476`
+   - Currency Symbol: `ETH`
+   - Block Explorer: `https://explorer-testnet.doma.xyz`
+
+2. **Get Test ETH**: Contact team for testnet tokens
+
+## 🧪 Testing
+
+```bash
+# Run smart contract tests
+cd hardhat
+npx hardhat test
+
+# Run frontend tests
+cd zenith-web
+npm run test
+
+# Check contract status
+npx hardhat run scripts/check-status.js --network doma
+```
+
+## 🤖 Auto-Fulfill Bot
+
+Start the auto-fulfill bot to process domain onboarding requests:
+
+```bash
+cd hardhat
+npx hardhat run scripts/auto-fulfill.js --network doma
+```
+
+## 📱 Production URLs
+
+- **Frontend**: [https://zenith-protocol.vercel.app](https://zenith-protocol.vercel.app)
+- **API**: [https://zenith-api.vercel.app](https://zenith-api.vercel.app)
+- **Docs**: [https://docs.zenith.xyz](https://docs.zenith.xyz)
 
 ---
 
