@@ -4,35 +4,42 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, TrendingUp, TrendingDown, Star, ChevronDown, BarChart3, Maximize2, Building2, BookOpen, History } from "lucide-react";
+import { Search, Star, ChevronDown, BarChart3, Maximize2, Building2, BookOpen, History, Rocket } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { useCustomCursor } from "@/hooks/useCustomCursor";
 import AdvancedCandlestickChart from "@/components/AdvancedCandlestickChart";
 import "@/index.css";
 
+const constellations = [
+  { name: "Orion-AI-10", description: "Top 10 AI-related domains", assetCount: 10 },
+  { name: "E-commerce Stars", description: "High-potential e-commerce domains", assetCount: 25 },
+  { name: "Geo-Domains", description: "Geographically significant domains", assetCount: 18 },
+  { name: "Web3 Pioneers", description: "Domains shaping the next web", assetCount: 12 },
+];
+
 const mockAssets = [
-  { domain: "crypto.com", ticker: "CRYPTO", price: "$245.50", change: "+5.2%", volume: "$1.2M", isUp: true, domaScore: 94 },
-  { domain: "defi.org", ticker: "DEFI", price: "$89.30", change: "+3.8%", volume: "$450K", isUp: true, domaScore: 87 },
-  { domain: "blockchain.io", ticker: "CHAIN", price: "$156.70", change: "-2.1%", volume: "$780K", isUp: false, domaScore: 91 },
-  { domain: "nft.art", ticker: "NFTART", price: "$42.15", change: "+12.4%", volume: "$920K", isUp: true, domaScore: 78 },
-  { domain: "web3.tech", ticker: "WEB3", price: "$112.80", change: "+7.6%", volume: "$650K", isUp: true, domaScore: 82 },
+  { domain: "elykid.com", ticker: "ELKD", price: "$350.75", change: "+4.2%", volume: "$2.1M", isUp: true, domaScore: 95, constellation: "Web3 Pioneers" },
+  { domain: "zenith.xyz", ticker: "ZNTH", price: "$580.20", change: "+8.1%", volume: "$5.5M", isUp: true, domaScore: 98, constellation: "Web3 Pioneers" },
+  { domain: "lucknowcrafts.com", ticker: "LKC", price: "$120.50", change: "-1.5%", volume: "$350K", isUp: false, domaScore: 88, constellation: "E-commerce Stars" },
+  { domain: "aiprotocol.io", ticker: "AIP", price: "$412.90", change: "+12.3%", volume: "$3.2M", isUp: true, domaScore: 92, constellation: "Orion-AI-10" },
+  { domain: "tokyodata.jp", ticker: "TKD", price: "$210.00", change: "+2.8%", volume: "$800K", isUp: true, domaScore: 85, constellation: "Geo-Domains" },
 ];
 
 const mockOrderBook = {
   bids: [
-    { price: "245.50", amount: "125.3", total: "30,748" },
-    { price: "245.48", amount: "89.7", total: "22,019" },
-    { price: "245.45", amount: "203.1", total: "49,850" },
-    { price: "245.42", amount: "156.8", total: "38,490" },
-    { price: "245.40", amount: "94.2", total: "23,117" },
+    { price: "350.75", amount: "15.3", total: "5,366" },
+    { price: "350.72", amount: "25.1", total: "8,805" },
+    { price: "350.68", amount: "50.7", total: "17,778" },
+    { price: "350.65", amount: "82.0", total: "28,753" },
+    { price: "350.60", amount: "105.2", total: "36,887" },
   ],
   asks: [
-    { price: "245.52", amount: "98.4", total: "24,159" },
-    { price: "245.55", amount: "142.7", total: "35,024" },
-    { price: "245.58", amount: "76.3", total: "18,738" },
-    { price: "245.60", amount: "189.5", total: "46,535" },
-    { price: "245.63", amount: "123.8", total: "30,409" },
+    { price: "350.78", amount: "22.9", total: "8,032" },
+    { price: "350.81", amount: "45.6", total: "15,998" },
+    { price: "350.85", amount: "78.3", total: "27,479" },
+    { price: "350.88", amount: "95.1", total: "33,370" },
+    { price: "350.92", amount: "112.4", total: "39,450" },
   ],
 };
 
@@ -64,21 +71,30 @@ const Exchange = () => {
               <Card className="bg-card/50 border-border/50 backdrop-blur-sm sticky top-12">
                 <div className="p-6 border-b border-border/50">
                   <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
-                    <BarChart3 className="h-6 w-6 text-primary" />
+                    <Rocket className="h-6 w-6 text-primary" />
                     Asset Navigator
                   </h2>
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="Search assets..." className="pl-10 bg-muted/30 border-border/50" />
+                    <Input placeholder="Search domains..." className="pl-10 bg-muted/30 border-border/50" />
+                  </div>
+                </div>
+                <div className="p-6 border-b border-border/50">
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                    <Star className="h-5 w-5 text-secondary" />
+                    Constellations
+                  </h3>
+                  <div className="space-y-2">
+                    {constellations.map(c => <ConstellationTag key={c.name} name={c.name} count={c.assetCount} />)}
                   </div>
                 </div>
                 <Tabs defaultValue="all" className="px-6 pt-6">
                   <TabsList className="grid w-full grid-cols-2 bg-muted/30">
-                    <TabsTrigger value="all">All Assets</TabsTrigger>
+                    <TabsTrigger value="all">All Domains</TabsTrigger>
                     <TabsTrigger value="watchlist">Watchlist</TabsTrigger>
                   </TabsList>
                 </Tabs>
-                <div className="p-6 space-y-2 max-h-[500px] overflow-y-auto custom-scrollbar">
+                <div className="p-6 space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar">
                   {mockAssets.map((asset) => (
                     <button key={asset.ticker} onClick={() => setSelectedAsset(asset)} className={`w-full p-3 rounded-lg text-left transition-all group ${
                         selectedAsset.ticker === asset.ticker
@@ -93,27 +109,15 @@ const Exchange = () => {
                           </div>
                           <p className="text-xs text-stardust-grey mt-0.5">{asset.domain}</p>
                         </div>
-                        {asset.isUp ? <TrendingUp className="h-4 w-4 text-primary" /> : <TrendingDown className="h-4 w-4 text-destructive" />}
+                        <span className={`text-sm font-mono font-semibold ${asset.isUp ? "text-primary" : "text-destructive"}`}>{asset.change}</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-base font-bold font-mono text-white">{asset.price}</span>
-                        <span className={`text-sm font-mono font-semibold ${asset.isUp ? "text-primary" : "text-destructive"}`}>{asset.change}</span>
+                        <p className="text-xs text-stardust-grey mt-1 font-mono">Vol: {asset.volume}</p>
                       </div>
-                      <p className="text-xs text-stardust-grey mt-1 font-mono">Vol: {asset.volume}</p>
                     </button>
                   ))}
                 </div>
-                {/*<div className="p-6 border-t border-border/50">*/}
-                {/*  <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-white">*/}
-                {/*    <Star className="h-5 w-5 text-secondary" />*/}
-                {/*    Constellations*/}
-                {/*  </h3>*/}
-                {/*  <div className="space-y-2">*/}
-                {/*    <ConstellationTag name="DeFi Pulse" count={12} />*/}
-                {/*    <ConstellationTag name="Orion-AI-10" count={10} />*/}
-                {/*    <ConstellationTag name="Web3 Leaders" count={15} />*/}
-                {/*  </div>*/}
-                {/*</div>*/}
               </Card>
             </div>
 
@@ -126,7 +130,7 @@ const Exchange = () => {
                     <div>
                       <div className="flex items-center gap-4 mb-2">
                         <h1 className="text-5xl font-bold text-white tracking-tighter">{selectedAsset.domain}</h1>
-                        <Badge className="bg-primary/10 text-primary border-primary/30 font-mono text-xl px-4 py-2">{selectedAsset.ticker}</Badge>
+                        <Badge className="bg-primary/10 text-primary border-primary/30 font-mono text-xl px-4 py-2">${selectedAsset.ticker}</Badge>
                       </div>
                       <p className="text-base text-stardust-grey font-mono">DomaScore: {selectedAsset.domaScore}/100</p>
                     </div>
@@ -150,7 +154,7 @@ const Exchange = () => {
                     <div className="p-4 border-b border-border/50">
                       <div className="flex items-center justify-between">
                         <div className="flex gap-1">
-                          {["1H", "4H", "1D", "1W", "1M", "3M"].map((tf) => (
+                          {['1H', '4H', '1D', '1W', '1M', '3M'].map((tf) => (
                             <Button key={tf} variant="ghost" size="sm" className="font-mono text-xs h-8 px-3 hover:bg-primary/10 hover:text-primary text-stardust-grey">{tf}</Button>
                           ))}
                         </div>
@@ -177,7 +181,7 @@ const Exchange = () => {
                         </div>
                         <div className="py-2 px-3 bg-muted/30 rounded-lg mb-4 text-center border border-border/50">
                           <p className="text-xs text-stardust-grey mb-1">Spread</p>
-                          <p className="text-sm font-mono font-bold text-secondary">$0.02 (0.01%)</p>
+                          <p className="text-sm font-mono font-bold text-secondary">$0.03 (0.01%)</p>
                         </div>
                         <div>
                           {mockOrderBook.bids.map((bid, i) => <OrderBookRow key={i} price={bid.price} amount={bid.amount} total={bid.total} type="bid" />)}
@@ -192,17 +196,17 @@ const Exchange = () => {
                       </div>
                       <div className="p-2">
                         <div className="grid grid-cols-3 gap-2 px-2 py-1 text-xs text-stardust-grey font-medium border-b border-border/30">
-                          <span>Price</span>
+                          <span>Price (USD)</span>
                           <span className="text-right">Amount</span>
                           <span className="text-right">Time</span>
                         </div>
                         <div className="space-y-0.5 mt-1">
-                          <TradeRow price="$245.52" amount="12.5" time="14:32:11" isBuy />
-                          <TradeRow price="$245.48" amount="8.3" time="14:32:08" isBuy={false} />
-                          <TradeRow price="$245.50" amount="15.7" time="14:32:05" isBuy />
-                          <TradeRow price="$245.45" amount="6.2" time="14:32:02" isBuy={false} />
-                          <TradeRow price="$245.47" amount="22.4" time="14:31:58" isBuy />
-                          <TradeRow price="$245.43" amount="11.9" time="14:31:55" isBuy={false} />
+                          <TradeRow price="350.78" amount="12.5" time="14:32:11" isBuy />
+                          <TradeRow price="350.75" amount="8.3" time="14:32:08" isBuy={false} />
+                          <TradeRow price="350.72" amount="15.7" time="14:32:05" isBuy />
+                          <TradeRow price="350.68" amount="6.2" time="14:32:02" isBuy={false} />
+                          <TradeRow price="350.65" amount="22.4" time="14:31:58" isBuy />
+                          <TradeRow price="350.60" amount="11.9" time="14:31:55" isBuy={false} />
                         </div>
                       </div>
                     </Card>
@@ -237,7 +241,7 @@ const Exchange = () => {
                           <label className="text-xs font-medium text-stardust-grey mb-2 block">Amount</label>
                           <div className="relative">
                             <Input type="number" placeholder="0.00" className="font-mono bg-muted/30 border-border/50 pr-12 text-white" />
-                            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-stardust-grey font-mono">{selectedAsset.ticker}</span>
+                            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-stardust-grey font-mono">${selectedAsset.ticker}</span>
                           </div>
                         </div>
                         <div>
@@ -264,8 +268,8 @@ const Exchange = () => {
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-4 pt-2">
-                        <Button className="bg-primary hover:bg-primary/90 font-semibold h-12 text-background text-base">Buy {selectedAsset.ticker}</Button>
-                        <Button variant="destructive" className="font-semibold h-12 text-base">Sell {selectedAsset.ticker}</Button>
+                        <Button className="bg-primary hover:bg-primary/90 font-semibold h-12 text-background text-base">Buy ${selectedAsset.ticker}</Button>
+                        <Button variant="destructive" className="font-semibold h-12 text-base">Sell ${selectedAsset.ticker}</Button>
                       </div>
                     </div>
                   </Card>

@@ -17,7 +17,6 @@ interface ValuationData {
   breakdown: { [key: string]: number };
 }
 
-// Re-styled component to match StellarReport's design language
 const GenesisEngine = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -102,7 +101,7 @@ const GenesisEngine = () => {
                     value={domain}
                     onChange={(e) => setDomain(e.target.value)}
                     type="text"
-                    placeholder="Enter Your Domain to Begin its Ascent"
+                    placeholder="Enter your domain to begin its ascent"
                     className="w-full h-16 bg-transparent text-white placeholder-stardust-grey pl-6 pr-40 text-lg outline-none rounded-xl border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                     required
                   />
@@ -118,7 +117,7 @@ const GenesisEngine = () => {
               <Card className="p-6 bg-card/50 border-border/50 backdrop-blur-sm text-left">
                  <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
                   <FileText className="h-6 w-6 text-primary" />
-                  Domain Verification
+                  Ownership Verification
                 </h2>
                 <p className="text-stardust-grey mb-4">
                   To prove you own <span className="text-white font-bold">{domain}</span>, add the following TXT record to your DNS settings.
@@ -164,7 +163,7 @@ const GenesisEngine = () => {
                 <div className="lg:col-span-2 w-full text-left">
                   <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
                     <TrendingUp className="h-6 w-6 text-primary" />
-                    Valuation Breakdown
+                    Valuation Constellation
                   </h2>
                   <div className="space-y-4">
                     {valuation && valuation.breakdown && Object.entries(valuation.breakdown).map(([key, value]) => (
@@ -189,7 +188,7 @@ const GenesisEngine = () => {
             <Card className="p-6 bg-card/50 border-border/50 backdrop-blur-sm text-left">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
                 <Settings2 className="h-6 w-6 text-primary" />
-                Configure Your Asset
+                Tokenization & Fractionalization
               </h2>
               <div className="space-y-6">
                 <DataPoint label="Asset" value={domain} />
@@ -249,10 +248,10 @@ const GenesisEngine = () => {
             <div className="w-20 h-20 mx-auto rounded-full bg-secondary/20 flex items-center justify-center border-4 border-secondary/50">
               <CheckCircle2 className="w-10 h-10 text-secondary" />
             </div>
-            <h2 className="text-3xl font-bold text-white mt-6">Launch Successful!</h2>
+            <h2 className="text-3xl font-bold text-white mt-6">Launch Successful</h2>
             <p className="text-stardust-grey mt-2">{domain} is now a liquid asset on the Doma Protocol.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Button variant="outline" className="h-12 px-6 font-bold rounded-lg border-primary/30 text-primary hover:bg-primary/10 hover:text-primary" onClick={() => navigate(`/constellation`)}>View in Portfolio</Button>
+              <Button variant="outline" className="h-12 px-6 font-bold rounded-lg border-primary/30 text-primary hover:bg-primary/10 hover:text-primary" onClick={() => navigate(`/constellation`)}>View Portfolio</Button>
               <Button className="h-12 px-6 bg-primary text-white font-bold rounded-lg transition-opacity hover:opacity-90" onClick={() => navigate('/exchange')}>Go to Exchange</Button>
             </div>
           </Card>
@@ -276,7 +275,7 @@ const GenesisEngine = () => {
                       Genesis Engine
                   </h1>
                   <p className="text-lg md:text-xl text-stardust-grey mt-4 max-w-2xl mx-auto">
-                      Onboard your domain and transform it into a liquid, tradable asset.
+                      A Structured Ascent: from asset to liquid tradable instrument.
                   </p>
               </div>
               <div className="w-full">
