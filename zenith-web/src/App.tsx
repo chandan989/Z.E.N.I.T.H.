@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import MissionControl from "./pages/MissionControl";
 import GenesisEngine from "./pages/GenesisEngine";
-import Exchange from "./pages/Exchange.tsx";
+import Exchange from "./pages/ExchangeConnected.tsx";
 import Constellation from "./pages/Constellation";
 import StellarReport from "./pages/StellarReport";
 import NotFound from "./pages/NotFound";

@@ -1,9 +1,11 @@
 import { useCustomCursor } from "@/hooks/useCustomCursor";
+import { useContracts } from "@/hooks/useContracts";
 import "@/index.css";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { ArrowUpRight, TrendingUp, Wallet } from "lucide-react";
+import { ArrowUpRight, TrendingUp, Wallet, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const mockPortfolio = [
   { domain: "crypto.com", ticker: "CRYPTO", shares: 125, value: "$30,687.50", pl24h: "+$1,245.30", plPercent: "+4.2%", domaScore: 94, isUp: true },
@@ -12,10 +14,50 @@ const mockPortfolio = [
 ];
 
 const Constellation = () => {
-  const totalValue = "$70,578.00";
-  const total24hPL = "+2.7%";
   const cursorRef = useCustomCursor();
   const navigate = useNavigate();
+  const { isReady, address, getAllFractionalTokens, getTokenBalance } = useContracts();
+  const [portfolio, setPortfolio] = useState(mockPortfolio);
+  const [loading, setLoading] = useState(false);
+  const totalValue = "$70,578.00";
+  const total24hPL = "+2.7%";
+
+  useEffect(() => {
+    if (isReady && address) {
+      loadPortfolio();
+    }
+  }, [isReady, address]);
+
+  const loadPortfolio = async () => {
+    setLoading(true);
+    try {
+      const tokens = await getAllFractionalTokens();
+      const portfolioData = await Promise.all(
+        tokens.map(async (tokenAddress: string) => {
+          const balance = await getTokenBalance(tokenAddress, address!);
+          // For now, use mock data but with real balance
+          return {
+            domain: "domain.com",
+            ticker: "DOM",
+            shares: parseFloat(balance),
+            value: "$0.00",
+            pl24h: "$0.00",
+            plPercent: "0%",
+            domaScore: 85,
+            isUp: true,
+            tokenAddress
+          };
+        })
+      );
+      if (portfolioData.length > 0) {
+        setPortfolio(portfolioData);
+      }
+    } catch (error) {
+      console.error('Failed to load portfolio:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleViewReport = (domain: string) => {
     navigate(`/stellar/crypto.com`);

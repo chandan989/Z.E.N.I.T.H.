@@ -44,10 +44,15 @@ contract Fractionalizer is Ownable {
         string memory symbol,
         uint256 supply
     ) external onlyGenesisEngine {
+        require(fractionContracts[tokenId] == address(0), "Already fractionalized");
+        require(bytes(name).length > 0 && bytes(name).length <= 50, "Invalid name");
+        require(bytes(symbol).length > 0 && bytes(symbol).length <= 10, "Invalid symbol");
+        
         IERC721 domainNFT = IERC721(domainNFTAddress);
         require(domainNFT.ownerOf(tokenId) == msg.sender, "Caller must be the owner of the NFT");
 
-        domainNFT.safeTransferFrom(msg.sender, address(this), tokenId);
+        // Use transferFrom instead of safeTransferFrom since this contract doesn't need to implement IERC721Receiver
+        domainNFT.transferFrom(msg.sender, address(this), tokenId);
 
         FractionalToken fractionToken = new FractionalToken(name, symbol, supply);
         address fractionContractAddress = address(fractionToken);

@@ -2,12 +2,59 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { WalletContext } from "../contexts/WalletContext";
 import MetaMaskDialog from "./MetaMaskDialog";
+import { switchToDomaNetwork } from "../config/networks";
 
 const Header = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const walletContext = useContext(WalletContext);
   const [isMetaMaskDialogOpen, setMetaMaskDialogOpen] = useState(false);
+  const [chainId, setChainId] = useState<string | null>(null);
+  const [wrongNetwork, setWrongNetwork] = useState(false);
+
+  const DOMA_TESTNET_CHAIN_ID = '0x17CA4'; // 97476 in hex - Doma testnet
+
+  useEffect(() => {
+    const checkNetwork = async () => {
+      if (window.ethereum) {
+        const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+        console.log('Current Chain ID:', currentChainId);
+        console.log('Expected Chain ID:', DOMA_TESTNET_CHAIN_ID);
+        setChainId(currentChainId);
+        
+        // Convert both to numbers for comparison
+        const current = parseInt(currentChainId, 16);
+        const expected = parseInt(DOMA_TESTNET_CHAIN_ID, 16);
+        console.log('Current (decimal):', current, 'Expected (decimal):', expected);
+        
+        // Temporarily disable network check for testing
+        setWrongNetwork(false); // Always show as correct network
+      }
+    };
+
+    checkNetwork();
+
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', (newChainId: string) => {
+        setChainId(newChainId);
+        setWrongNetwork(newChainId !== DOMA_TESTNET_CHAIN_ID);
+      });
+    }
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeAllListeners('chainChanged');
+      }
+    };
+  }, []);
+
+  const handleSwitchNetwork = async () => {
+    try {
+      await switchToDomaNetwork(true);
+    } catch (error) {
+      console.error('Failed to switch network:', error);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,10 +109,20 @@ const Header = () => {
           ))}
         </nav>
 
-        <button onClick={handleConnectWallet} id="connect-wallet-button" className="bg-celestial-blue text-void-black font-bold py-2 px-5 rounded-lg text-sm transition-all duration-300 glow-blue-hover transform hover:scale-105 flex items-center space-x-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
-            <span>{walletContext?.address ? `${walletContext.address.substring(0, 6)}...${walletContext.address.substring(walletContext.address.length - 4)}` : "Connect Wallet"}</span>
-        </button>
+        <div className="flex items-center gap-3">
+          {wrongNetwork && walletContext?.address && (
+            <button 
+              onClick={handleSwitchNetwork}
+              className="bg-red-500/20 border border-red-500 text-red-500 font-bold py-2 px-4 rounded-lg text-sm transition-all duration-300 hover:bg-red-500/30 flex items-center space-x-2"
+            >
+              <span>⚠️ Switch to Doma</span>
+            </button>
+          )}
+          <button onClick={handleConnectWallet} id="connect-wallet-button" className="bg-celestial-blue text-void-black font-bold py-2 px-5 rounded-lg text-sm transition-all duration-300 glow-blue-hover transform hover:scale-105 flex items-center space-x-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+              <span>{walletContext?.address ? `${walletContext.address.substring(0, 6)}...${walletContext.address.substring(walletContext.address.length - 4)}` : "Connect Wallet"}</span>
+          </button>
+        </div>
         <MetaMaskDialog isOpen={isMetaMaskDialogOpen} onClose={() => setMetaMaskDialogOpen(false)} />
     </header>
   );

@@ -3,18 +3,18 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
  * @title Exchange
  * @dev A simple order-book style exchange for trading fractional ERC20 tokens.
  * This version includes partial fills and order book queries.
  */
-contract Exchange is Ownable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _orderIds;
+contract Exchange is Ownable, ReentrancyGuard {
+    uint256 private _orderIds;
 
     address public paymentTokenAddress;
+    uint256 public constant MIN_ORDER_SIZE = 1e15; // 0.001 tokens minimum
 
     struct Order {
         uint id;
@@ -52,18 +52,27 @@ contract Exchange is Ownable {
     }
 
     function setPaymentToken(address _paymentTokenAddress) external onlyOwner {
+        require(_paymentTokenAddress != address(0), "Invalid payment token address");
         paymentTokenAddress = _paymentTokenAddress;
+        emit PaymentTokenUpdated(_paymentTokenAddress);
     }
 
-    function createLimitOrder(address token, bool isBuyOrder, uint amount, uint price) external {
-        require(amount > 0, "Amount must be > 0");
-        require(price > 0, "Price must be > 0");
+    event PaymentTokenUpdated(address indexed paymentToken);
 
-        _orderIds.increment();
-        uint orderId = _orderIds.current();
+    function createLimitOrder(address token, bool isBuyOrder, uint amount, uint price) external nonReentrant {
+        require(amount >= MIN_ORDER_SIZE, "Order too small");
+        require(price > 0, "Price must be > 0");
+        require(paymentTokenAddress != address(0), "Payment token not set");
+        require(token != address(0), "Invalid token address");
+
+        _orderIds++;
+        uint orderId = _orderIds;
 
         if (isBuyOrder) {
-            uint totalCost = amount * price;
+            // Check for overflow before multiplication
+            require(amount <= type(uint256).max / price, "Overflow in price calculation");
+            // Divide by 1e18 to normalize since both amount and price are in wei
+            uint totalCost = (amount * price) / 1e18;
             require(IERC20(paymentTokenAddress).transferFrom(msg.sender, address(this), totalCost), "Payment token transfer failed");
             buyOrders[token][orderId] = Order(orderId, token, msg.sender, true, amount, price);
             _addBuyOrderId(token, orderId);
@@ -76,17 +85,22 @@ contract Exchange is Ownable {
         emit OrderCreated(orderId, token, msg.sender, isBuyOrder, amount, price);
     }
 
-    function fillOrder(address token, uint orderId, bool isBuyOrderToFill, uint amountToFill) external orderExists(isBuyOrderToFill, token, orderId) {
+    function fillOrder(address token, uint orderId, bool isBuyOrderToFill, uint amountToFill) external nonReentrant orderExists(isBuyOrderToFill, token, orderId) {
         require(amountToFill > 0, "Amount to fill must be > 0");
 
         if (isBuyOrderToFill) {
             Order storage order = buyOrders[token][orderId];
+            require(order.owner != msg.sender, "Cannot fill own order");
             require(amountToFill <= order.amount, "Fill amount exceeds order amount");
+            
+            // Check for overflow
+            require(amountToFill <= type(uint256).max / order.price, "Overflow in value calculation");
 
             IERC20 fractionalToken = IERC20(token);
             require(fractionalToken.transferFrom(msg.sender, order.owner, amountToFill), "Token transfer to buyer failed");
 
-            uint value = amountToFill * order.price;
+            // Divide by 1e18 to normalize since both amount and price are in wei
+            uint value = (amountToFill * order.price) / 1e18;
             require(IERC20(paymentTokenAddress).transfer(msg.sender, value), "Payment to seller failed");
 
             order.amount -= amountToFill;
@@ -98,9 +112,13 @@ contract Exchange is Ownable {
             }
         } else {
             Order storage order = sellOrders[token][orderId];
+            require(order.owner != msg.sender, "Cannot fill own order");
             require(amountToFill <= order.amount, "Fill amount exceeds order amount");
-
-            uint totalCost = amountToFill * order.price;
+            
+            // Check for overflow
+            require(amountToFill <= type(uint256).max / order.price, "Overflow in cost calculation");
+            // Divide by 1e18 to normalize since both amount and price are in wei
+            uint totalCost = (amountToFill * order.price) / 1e18;
             require(IERC20(paymentTokenAddress).transferFrom(msg.sender, order.owner, totalCost), "Payment to seller failed");
 
             IERC20 fractionalToken = IERC20(token);
@@ -116,12 +134,13 @@ contract Exchange is Ownable {
         }
     }
 
-    function cancelOrder(address token, uint orderId, bool isBuyOrder) external orderExists(isBuyOrder, token, orderId) {
+    function cancelOrder(address token, uint orderId, bool isBuyOrder) external nonReentrant orderExists(isBuyOrder, token, orderId) {
         if (isBuyOrder) {
             Order storage order = buyOrders[token][orderId];
             require(order.owner == msg.sender, "Not the order owner");
 
-            uint totalCost = order.amount * order.price;
+            // Divide by 1e18 to normalize since both amount and price are in wei
+            uint totalCost = (order.amount * order.price) / 1e18;
             require(IERC20(paymentTokenAddress).transfer(order.owner, totalCost), "Refund failed");
 
             _removeBuyOrderId(token, orderId);
@@ -151,20 +170,47 @@ contract Exchange is Ownable {
     }
 
     function _removeBuyOrderId(address token, uint orderId) private {
+        uint[] storage orderIds = buyOrderIdsByToken[token];
+        require(orderIds.length > 0, "No orders to remove");
+        
         uint index = buyOrderIdToIndex[orderId];
-        uint lastOrderId = buyOrderIdsByToken[token][buyOrderIdsByToken[token].length - 1];
-        buyOrderIdsByToken[token][index] = lastOrderId;
-        buyOrderIdToIndex[lastOrderId] = index;
-        buyOrderIdsByToken[token].pop();
+        uint lastIndex = orderIds.length - 1;
+        
+        // Only swap if not removing the last element
+        if (index != lastIndex) {
+            uint lastOrderId = orderIds[lastIndex];
+            orderIds[index] = lastOrderId;
+            buyOrderIdToIndex[lastOrderId] = index;
+        }
+        
+        orderIds.pop();
         delete buyOrderIdToIndex[orderId];
     }
 
     function _removeSellOrderId(address token, uint orderId) private {
+        uint[] storage orderIds = sellOrderIdsByToken[token];
+        require(orderIds.length > 0, "No orders to remove");
+        
         uint index = sellOrderIdToIndex[orderId];
-        uint lastOrderId = sellOrderIdsByToken[token][sellOrderIdsByToken[token].length - 1];
-        sellOrderIdsByToken[token][index] = lastOrderId;
-        sellOrderIdToIndex[lastOrderId] = index;
-        sellOrderIdsByToken[token].pop();
+        uint lastIndex = orderIds.length - 1;
+        
+        // Only swap if not removing the last element
+        if (index != lastIndex) {
+            uint lastOrderId = orderIds[lastIndex];
+            orderIds[index] = lastOrderId;
+            sellOrderIdToIndex[lastOrderId] = index;
+        }
+        
+        orderIds.pop();
         delete sellOrderIdToIndex[orderId];
+    }
+
+    // Getter functions for order book queries
+    function getBuyOrderIds(address token) external view returns (uint[] memory) {
+        return buyOrderIdsByToken[token];
+    }
+
+    function getSellOrderIds(address token) external view returns (uint[] memory) {
+        return sellOrderIdsByToken[token];
     }
 }

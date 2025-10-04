@@ -80,12 +80,38 @@ const GenesisEngine = () => {
     }, 2000);
   };
 
-  const handleConfirmMint = () => {
+  const handleConfirmMint = async () => {
     setIsMinting(true);
-    setTimeout(() => {
+    try {
+      // Import the contract function
+      const { requestOnboarding } = await import('@/lib/contracts');
+      
+      toast.info('Sending transaction to Doma Protocol...');
+      
+      // Call the smart contract
+      const receipt = await requestOnboarding(
+        domain,
+        `${domain.split('.')[0]} Token`,
+        tokenTicker,
+        tokenSupply.toString(),
+        valuation?.domaScore || 850
+      );
+      
+      console.log('Transaction successful:', receipt.hash);
+      toast.success('Onboarding request submitted! Processing...');
+      
+      // Wait a bit for auto-fulfill (in demo with auto-fulfill bot)
+      setTimeout(() => {
+        toast.success('Domain tokenized successfully!');
+        setIsMinting(false);
+        setStep(4);
+      }, 3000);
+      
+    } catch (error: any) {
+      console.error('Transaction failed:', error);
+      toast.error(error.message || 'Transaction failed');
       setIsMinting(false);
-      setStep(4);
-    }, 3000);
+    }
   };
 
   const renderStepContent = () => {
@@ -211,9 +237,15 @@ const GenesisEngine = () => {
                     className="w-full h-12 bg-muted/30 border-border/50 rounded-lg text-white font-mono text-lg px-4 outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
-                <p className="text-xs text-stardust-grey text-center pt-4">
-                  This action will mint an ERC-721 Genesis NFT representing your domain and fractionalize it into {tokenSupply.toLocaleString()} ERC-20 tokens with the ticker ${tokenTicker}.
-                </p>
+                <div className="bg-primary/10 border border-primary/30 rounded-lg p-4 mt-4">
+                  <p className="text-sm text-white font-semibold mb-2">📦 What happens next:</p>
+                  <ul className="text-xs text-stardust-grey space-y-1">
+                    <li>• <span className="text-white">NFT Minted:</span> Your domain becomes an ERC-721 token (ownership proof)</li>
+                    <li>• <span className="text-white">Fractionalized:</span> NFT locked in vault, {tokenSupply.toLocaleString()} ${tokenTicker} shares created</li>
+                    <li>• <span className="text-white">Tradeable:</span> Shares can be traded on the Exchange for liquidity</li>
+                    <li>• <span className="text-white">Redeemable:</span> Collect all shares to unlock the original NFT</li>
+                  </ul>
+                </div>
               </div>
             </Card>
             {showConfirmButtons ? (

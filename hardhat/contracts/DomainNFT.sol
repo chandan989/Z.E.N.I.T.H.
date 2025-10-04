@@ -3,7 +3,6 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 /**
  * @title DomainNFT
@@ -11,8 +10,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
  * It allows a designated GenesisEngine contract to mint new domain NFTs.
  */
 contract DomainNFT is ERC721Enumerable, Ownable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIdCounter;
+    uint256 private _tokenIdCounter = 1; // Start from 1 instead of 0
 
     address public genesisEngineAddress;
 
@@ -27,7 +25,7 @@ contract DomainNFT is ERC721Enumerable, Ownable {
         _;
     }
 
-    constructor() ERC721("Zenith Domain NFT", "ZDN") {}
+    constructor() ERC721("Zenith Domain NFT", "ZDN") Ownable(msg.sender) {}
 
     function setGenesisEngineAddress(address _genesisEngineAddress) external onlyOwner {
         genesisEngineAddress = _genesisEngineAddress;
@@ -46,16 +44,16 @@ contract DomainNFT is ERC721Enumerable, Ownable {
      * Can only be called by the GenesisEngine contract.
      */
     function safeMint(address to, string memory domainName, uint256 domaScore) public onlyGenesisEngine returns (uint256) {
-        uint256 tokenId = _tokenIdCounter.current();
+        uint256 tokenId = _tokenIdCounter;
         _safeMint(to, tokenId);
         _domainNames[tokenId] = domainName;
         domaScores[tokenId] = domaScore;
-        _tokenIdCounter.increment();
+        _tokenIdCounter++;
         return tokenId;
     }
 
     function getDomainName(uint256 tokenId) external view returns (string memory) {
-        require(tokenId < _tokenIdCounter.current(), "ERC721Metadata: URI query for nonexistent token");
+        require(tokenId < _tokenIdCounter, "ERC721Metadata: URI query for nonexistent token");
         return _domainNames[tokenId];
     }
 }

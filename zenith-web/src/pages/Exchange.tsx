@@ -1,14 +1,17 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Star, ChevronDown, BarChart3, Maximize2, Building2, BookOpen, History, Rocket } from "lucide-react";
+import { Search, Star, ChevronDown, BarChart3, Maximize2, Building2, BookOpen, History, Rocket, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { useCustomCursor } from "@/hooks/useCustomCursor";
+import { useContracts } from "@/hooks/useContracts";
 import AdvancedCandlestickChart from "@/components/AdvancedCandlestickChart";
+import { toast } from "sonner";
+import { CONTRACTS } from "@/config/contracts";
 import "@/index.css";
 
 const constellations = [
